@@ -27,7 +27,6 @@ const CAP_MEDIA = [
 
 export default function Home() {
   const studies = getAllCaseStudies();
-  const [feature, ...rest] = studies;
 
   return (
     <>
@@ -115,13 +114,15 @@ export default function Home() {
           </TransitionLink>
         </div>
 
-        <div className="mt-16">
-          <WorkCard study={feature} index={1} feature noBend />
-        </div>
-
-        <div className="mt-16 grid gap-x-10 gap-y-20 md:mt-24 md:grid-cols-2">
-          {rest.map((study, i) => (
-            <WorkCard key={study.slug} study={study} index={i + 2} />
+        <div className="mt-10 grid gap-x-6 gap-y-12 md:grid-cols-2">
+          {studies.map((study, i) => (
+            <WorkCard
+              key={study.slug}
+              study={study}
+              index={i + 1}
+              ratio="16 / 10"
+              sizes="(min-width: 768px) 44vw, 100vw"
+            />
           ))}
         </div>
       </section>
