@@ -234,7 +234,7 @@ export default async function CaseStudyPage({
               {study.results.map((r, i) => (
                 <Reveal key={i} delay={i * 80} as="li">
                   {r.value && (
-                    <p className="font-display text-[clamp(3rem,6vw,5rem)] font-light leading-none tracking-tight text-(--color-accent-soft)">
+                    <p className="font-(family-name:--font-label) text-[clamp(3rem,6vw,5rem)] font-light leading-none tracking-tight text-(--color-accent)">
                       {r.value}
                     </p>
                   )}

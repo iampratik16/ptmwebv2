@@ -11,8 +11,8 @@ const variants: Record<Variant, string> = {
   solid:
     "rounded-full bg-(--color-ink) px-7 py-3.5 text-sm text-(--color-paper-on-dark) hover:bg-(--color-accent)",
   line:
-    "rounded-full border border-(--color-ink)/25 px-7 py-3.5 text-sm text-(--color-ink) hover:border-(--color-accent) hover:text-(--color-accent)",
-  text: "text-sm uppercase tracking-[0.12em] text-(--color-ink) hover:text-(--color-accent)",
+    "rounded-full border border-(--color-ink)/25 px-7 py-3.5 text-sm text-(--color-ink) hover:border-(--color-accent) hover:text-(--color-accent-ink)",
+  text: "text-sm uppercase tracking-[0.12em] text-(--color-ink) hover:text-(--color-accent-ink)",
 };
 
 type CommonProps = {

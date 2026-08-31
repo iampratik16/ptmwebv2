@@ -97,7 +97,7 @@ export default function WorkCard({
               {String(index).padStart(2, "0")}
             </span>
           )}
-          <Heading className="mt-2 text-h3 font-display tracking-tight transition-colors duration-500 group-hover:text-(--color-accent)">
+          <Heading className="mt-2 text-h3 font-display tracking-tight transition-colors duration-500 group-hover:text-(--color-accent-ink)">
             {study.client}
           </Heading>
           <p className="mt-1.5 max-w-[42ch] text-(--color-ink-soft)">

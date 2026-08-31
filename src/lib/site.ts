@@ -11,7 +11,7 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.pinktreemedia.com",
   description:
     "Pink Tree Media provides complete marketing solutions for ambitious brands, a UK luxury creative consultancy spanning design, print, digital and social.",
-  tagline: "Complete marketing solutions for ambitious brands.",
+  tagline: "Complete marketing for ambitious brands.",
   locale: "en_GB",
 } as const;
 

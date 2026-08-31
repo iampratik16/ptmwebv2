@@ -38,10 +38,10 @@ export default function ContactPage() {
           <Reveal>
             <p className="eyebrow">Direct</p>
             <div className="mt-5 flex flex-col gap-2">
-              <a href={`mailto:${CONTACT.email}`} className="link-underline w-fit text-lg hover:text-(--color-accent)">
+              <a href={`mailto:${CONTACT.email}`} className="link-underline w-fit text-lg hover:text-(--color-accent-ink)">
                 {CONTACT.email}
               </a>
-              <a href={`tel:${CONTACT.phoneHref}`} className="link-underline w-fit text-lg hover:text-(--color-accent)">
+              <a href={`tel:${CONTACT.phoneHref}`} className="link-underline w-fit text-lg hover:text-(--color-accent-ink)">
                 {CONTACT.phoneDisplay}
               </a>
             </div>
@@ -74,7 +74,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="text-(--color-ink-soft) transition-colors duration-500 hover:text-(--color-accent)"
+                  className="text-(--color-ink-soft) transition-colors duration-500 hover:text-(--color-accent-ink)"
                 >
                   <Icon className="size-6" />
                 </a>

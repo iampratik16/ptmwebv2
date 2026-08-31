@@ -39,7 +39,12 @@ const res = await fetch(url, {
   headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
   body: JSON.stringify({
     contents: [{ role: "user", parts: [{ text }] }],
-    generationConfig: { responseModalities: ["IMAGE"] },
+    generationConfig: {
+      responseModalities: ["IMAGE"],
+      // Aspect must be requested, not cropped in afterwards — the model composes
+      // for the frame it is given, and cropping a square throws away the shot.
+      ...(process.env.ASPECT ? { imageConfig: { aspectRatio: process.env.ASPECT } } : {}),
+    },
   }),
 });
 

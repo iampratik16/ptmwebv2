@@ -23,7 +23,7 @@ export default function Hero() {
           delay={40}
           className="display max-w-[18ch] text-[clamp(2.05rem,4.3vw,5rem)] text-(--color-paper-on-dark)"
         >
-          Complete marketing solutions for ambitious brands.
+          Complete marketing for ambitious brands.
         </MaskHeading>
       </div>
     </section>

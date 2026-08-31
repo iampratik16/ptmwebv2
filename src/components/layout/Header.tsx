@@ -74,7 +74,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Pink Tree Media on Instagram"
-                className="transition-colors duration-500 hover:text-(--color-accent)"
+                className="transition-colors duration-500 hover:text-(--color-accent-ink)"
               >
                 <Instagram className="size-[1.35rem]" />
               </a>
@@ -83,7 +83,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Pink Tree Media on TikTok"
-                className="transition-colors duration-500 hover:text-(--color-accent)"
+                className="transition-colors duration-500 hover:text-(--color-accent-ink)"
               >
                 <TikTok className="size-[1.35rem]" />
               </a>
@@ -92,7 +92,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Pink Tree Media on LinkedIn"
-                className="transition-colors duration-500 hover:text-(--color-accent)"
+                className="transition-colors duration-500 hover:text-(--color-accent-ink)"
               >
                 <LinkedIn className="size-[1.35rem]" />
               </a>
