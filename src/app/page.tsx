@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
+import Sectors from "@/components/sections/Sectors";
 import Reveal from "@/components/motion/Reveal";
 import SplitHeading from "@/components/motion/SplitHeading";
+import PinnedStatement from "@/components/motion/PinnedStatement";
 import WorkCard from "@/components/work/WorkCard";
 import HoverVideo from "@/components/media/HoverVideo";
 import HyperspeedBg from "@/components/media/HyperspeedBg";
@@ -32,21 +34,61 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Who we are */}
-      <section className="section container-page">
+      {/* Manifesto — pins and resolves word by word against scroll progress.
+          SplitHeading is deliberately not used here: PinnedStatement runs its
+          own SplitText, and two splits on one node fight over the DOM. */}
+      <PinnedStatement className="section container-page">
         <div className="grid gap-y-10 md:grid-cols-12">
-          <Reveal as="p" className="eyebrow md:col-span-3">
-            Who we are
-          </Reveal>
+          <p className="eyebrow md:col-span-3">Who we are</p>
           <div className="md:col-span-8 md:col-start-5">
-            <SplitHeading
-              as="p"
+            <p
+              data-pin-text
               className="font-serif text-h2 font-light leading-[1.15] tracking-tight"
             >
-              A luxury creative consultancy handling every aspect of a brand’s
+              A luxury creative consultancy handling every aspect of a brand&rsquo;s
               marketing under one roof, quietly, and exceptionally well.
+            </p>
+          </div>
+        </div>
+      </PinnedStatement>
+
+      <Sectors />
+
+      {/* Selected work — sticky stack: each card pins under the header and the
+          next scrolls over it. Cards carry an opaque ground so the one beneath
+          is fully covered. */}
+      <section className="section container-page">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <Reveal as="p" className="eyebrow">
+              Selected work
+            </Reveal>
+            <SplitHeading as="h2" className="mt-3 text-h2 font-light tracking-tight">
+              Proof, not promises.
             </SplitHeading>
           </div>
+          <TransitionLink
+            href="/work"
+            className="link-underline hidden shrink-0 pb-2 text-sm uppercase tracking-[0.12em] text-(--color-ink-soft) hover:text-(--color-accent-ink) sm:inline-block"
+          >
+            All work
+          </TransitionLink>
+        </div>
+
+        <div className="sticky-stack mt-10 flex flex-col gap-[12vh]">
+          {studies.map((study, i) => (
+            <div
+              key={study.slug}
+              className="sticky-stack-item bg-(--color-paper) pb-6"
+            >
+              <WorkCard
+                study={study}
+                index={i + 1}
+                ratio="16 / 9"
+                sizes="(min-width: 1024px) 70vw, 100vw"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -81,7 +123,7 @@ export default function Home() {
                     </TiltedCard>
                   </div>
                   <div className="mt-5 flex items-center justify-between gap-3">
-                    <h3 className="text-h3 font-display font-medium tracking-tight transition-colors duration-500 group-hover:text-(--color-accent)">
+                    <h3 className="text-h3 tracking-tight transition-colors duration-500 group-hover:text-(--color-accent-ink)">
                       {cap}
                     </h3>
                     <span className="cap-card-arrow grid size-10 shrink-0 place-items-center rounded-full border border-(--color-ink)/25 text-(--color-ink)">
@@ -92,38 +134,6 @@ export default function Home() {
               </Reveal>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* Selected work */}
-      <section className="section container-page">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <Reveal as="p" className="eyebrow">
-              Selected work
-            </Reveal>
-            <SplitHeading as="h2" className="mt-3 text-h2 font-light tracking-tight">
-              Proof, not promises.
-            </SplitHeading>
-          </div>
-          <TransitionLink
-            href="/work"
-            className="link-underline hidden shrink-0 pb-2 text-sm uppercase tracking-[0.12em] text-(--color-ink-soft) hover:text-(--color-accent) sm:inline-block"
-          >
-            All work
-          </TransitionLink>
-        </div>
-
-        <div className="mt-8 grid gap-x-5 gap-y-9 md:grid-cols-2 lg:grid-cols-3">
-          {studies.map((study, i) => (
-            <WorkCard
-              key={study.slug}
-              study={study}
-              index={i + 1}
-              ratio="4 / 3"
-              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 44vw, 100vw"
-            />
-          ))}
         </div>
       </section>
 
@@ -154,7 +164,7 @@ export default function Home() {
             <Reveal delay={120}>
               <TransitionLink
                 href="/about"
-                className="link-underline mt-10 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em] text-(--color-accent-soft) hover:text-(--color-paper-on-dark)"
+                className="link-underline mt-10 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em] text-(--color-accent-on-dark) hover:text-(--color-paper-on-dark)"
               >
                 More about us
                 <ArrowUpRight className="size-4" />

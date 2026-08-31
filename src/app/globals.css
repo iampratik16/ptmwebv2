@@ -916,7 +916,11 @@
 .rail {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(15rem, 26vw);
+  /* A single definite track size, NOT minmax(): minmax() lets tracks shrink to
+     fit the container, so with only a handful of sectors they all fit and the
+     rail silently stops being a rail. A clamp() track keeps its width and the
+     container genuinely overflows. */
+  grid-auto-columns: clamp(16rem, 30vw, 26rem);
   gap: clamp(0.75rem, 1.5vw, 1.5rem);
   overflow-x: auto;
   overscroll-behavior-x: contain;

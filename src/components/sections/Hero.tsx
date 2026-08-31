@@ -5,7 +5,7 @@ import { loop } from "@/lib/media";
 const homeHero = loop(
   "/media/hero/home",
   "/media/hero/home.jpg",
-  "Rosewood ink billowing through water, an ambient brand film.",
+  "Light travelling slowly across brushed champagne metal, an ambient brand film.",
   1760,
   880,
 );
