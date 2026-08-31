@@ -26,6 +26,8 @@ const checks = [
   ["accent-ink on paper (small text)", tok("accent-ink"), paper, 4.5],
   ["accent on paper (large display)", tok("accent"), paper, 3.0],
   ["accent-on-dark on ink (small text)", tok("accent-on-dark"), ink, 4.5],
+  ["accent-on-dark on oxblood (small text)", tok("accent-on-dark"), tok("oxblood"), 4.5],
+  ["paper-on-dark on oxblood (body)", tok("paper-on-dark"), tok("oxblood"), 4.5],
   ["ink on paper (body)", ink, paper, 4.5],
 ];
 

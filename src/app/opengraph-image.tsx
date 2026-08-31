@@ -15,7 +15,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(135deg, #14110f 0%, #2a2418 100%)",
+          background: "linear-gradient(135deg, #1a1012 0%, #3d1620 100%)",
           padding: "72px",
           fontFamily: "Georgia, serif",
         }}
@@ -25,14 +25,14 @@ export default function OgImage() {
             fontSize: 22,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#BFA06A",
+            color: "#E0AEB4",
             fontFamily: "Helvetica, Arial, sans-serif",
           }}
         >
           {SITE.name}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 72, lineHeight: 1.05, color: "#EFEAE1", maxWidth: 900 }}>
+          <div style={{ fontSize: 72, lineHeight: 1.05, color: "#F2EAE8", maxWidth: 900 }}>
             {SITE.tagline}
           </div>
           <div
@@ -40,7 +40,7 @@ export default function OgImage() {
               marginTop: 36,
               width: 120,
               height: 2,
-              background: "#A8823F",
+              background: "#B76E79",
               display: "flex",
             }}
           />

@@ -26,7 +26,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(135deg, #14110f 0%, #3a3122 100%)",
+          background: "linear-gradient(135deg, #1a1012 0%, #3d1620 100%)",
           padding: "72px",
           fontFamily: "Georgia, serif",
         }}
@@ -37,14 +37,14 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
             fontSize: 20,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#E6D9BD",
+            color: "#EFDCDF",
             fontFamily: "Helvetica, Arial, sans-serif",
           }}
         >
           {sector}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 80, lineHeight: 1.0, color: "#EFEAE1", maxWidth: 980 }}>
+          <div style={{ fontSize: 80, lineHeight: 1.0, color: "#F2EAE8", maxWidth: 980 }}>
             {client}
           </div>
           <div style={{ marginTop: 24, fontSize: 30, color: "#b9b1a6", maxWidth: 900, fontFamily: "Helvetica, Arial, sans-serif" }}>
@@ -57,7 +57,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
             fontSize: 22,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "#BFA06A",
+            color: "#E0AEB4",
             fontFamily: "Helvetica, Arial, sans-serif",
           }}
         >

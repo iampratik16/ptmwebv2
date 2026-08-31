@@ -2,22 +2,23 @@
 
 /* =============================================================================
    PINK TREE MEDIA — Design System ("Atelier")
-   Warm near-monochrome palette · one restrained champagne accent · editorial
+   Ivory ground · rose gold, maroon and oxblood · atelier · editorial
    type · enormous whitespace · slow, weighty, inertia-based motion.
    ========================================================================== */
 
 @theme {
   /* ---- Colour ------------------------------------------------------------ */
-  --color-paper: #f5f2ec; /* warm bone / ivory — primary background */
-  --color-ink: #14110f; /* warm near-black — primary text / dark sections */
-  --color-ink-soft: #6b645c; /* secondary text, captions, labels */
-  --color-hairline: #e2dcd2; /* borders, dividers, 1px rules */
-  --color-accent: #a8823f; /* champagne — hairlines, hover, LARGE display (3.17:1 on paper) */
-  --color-accent-ink: #7f5f2a; /* deep champagne — small accent TEXT on paper (5.26:1, AA) */
-  --color-accent-on-dark: #bfa06a; /* light champagne — accent on ink sections (7.57:1) */
-  --color-accent-soft: #e6d9bd; /* champagne tint — fills, subtle washes */
-  --color-paper-on-dark: #efeae1; /* text on ink sections */
-  --color-hairline-dark: #2a2521; /* hairlines on dark sections */
+  --color-paper: #f7f4ee; /* ivory white — primary background */
+  --color-ink: #1a1012; /* maroon-black — primary text / dark sections (16.98:1) */
+  --color-ink-soft: #6d6060; /* secondary text, captions, labels */
+  --color-hairline: #e5dcd8; /* borders, dividers, 1px rules */
+  --color-oxblood: #3d1620; /* deep dark red — signature dark section ground */
+  --color-accent: #b76e79; /* ROSE GOLD — hairlines, hover, LARGE display (3.47:1 on ivory) */
+  --color-accent-ink: #7a2e3a; /* maroon — small accent TEXT on ivory (8.39:1, AA) */
+  --color-accent-on-dark: #e0aeb4; /* light rose — accent on ink/oxblood (9.66:1) */
+  --color-accent-soft: #efdcdf; /* soft pink — washes and fills ONLY, never text (1.20:1) */
+  --color-paper-on-dark: #f2eae8; /* text on ink sections */
+  --color-hairline-dark: #332025; /* hairlines on dark sections */
 
   /* ---- Type -------------------------------------------------------------- */
   /* Display: high-contrast editorial serif — the DM Serif / Playfair register
@@ -616,9 +617,9 @@
 }
 
 /* =============================================================================
-   Ambient site-wide background — "aurora-warm-metal". Warm-bone base (#f6f3ee)
-   with a faint static mesh painted on .site-bg (bronze UL, pale champagne UR,
-   warm gold centre, cream LR) so corners never read flat, plus 4 large blurred
+   Ambient site-wide background — "aurora-rose-atelier". Ivory base (#f7f4ee)
+   with a faint static mesh painted on .site-bg (soft rose UL, pale pink UR,
+   dusty rose centre, ivory LR) so corners never read flat, plus 4 large blurred
    radial blobs drifting on transform-only keyframes → GPU-composited. Alphas are
    low so dark ink text stays fully readable. Fixed full-viewport layer behind all
    content; frozen under reduced motion. See SiteBackground.tsx.
@@ -666,12 +667,12 @@
   z-index: -10;
   overflow: hidden;
   pointer-events: none;
-  background-color: #f6f3ee;
+  background-color: #f7f4ee;
   background-image:
-    radial-gradient(120% 90% at 12% 8%, rgba(206, 186, 152, 0.3), rgba(206, 186, 152, 0) 55%),
-    radial-gradient(120% 90% at 88% 6%, rgba(226, 210, 176, 0.28), rgba(226, 210, 176, 0) 55%),
-    radial-gradient(130% 100% at 52% 46%, rgba(216, 194, 148, 0.24), rgba(216, 194, 148, 0) 60%),
-    radial-gradient(120% 100% at 92% 92%, rgba(240, 226, 200, 0.3), rgba(240, 226, 200, 0) 58%);
+    radial-gradient(120% 90% at 12% 8%, rgba(226, 196, 200, 0.3), rgba(226, 196, 200, 0) 55%),
+    radial-gradient(120% 90% at 88% 6%, rgba(238, 218, 220, 0.28), rgba(238, 218, 220, 0) 55%),
+    radial-gradient(130% 100% at 52% 46%, rgba(216, 178, 186, 0.24), rgba(216, 178, 186, 0) 60%),
+    radial-gradient(120% 100% at 92% 92%, rgba(244, 236, 228, 0.3), rgba(244, 236, 228, 0) 58%);
 }
 .site-bg > span {
   position: absolute;
@@ -679,25 +680,25 @@
   will-change: transform;
   filter: blur(50px);
 }
-/* soft bronze — upper-left */
+/* soft rose — upper-left */
 .site-bg .b1 {
   width: 68vmax;
   height: 68vmax;
   left: -16vmax;
   top: -14vmax;
-  background: radial-gradient(circle, rgba(206, 186, 152, 0.5), rgba(206, 186, 152, 0) 70%);
+  background: radial-gradient(circle, rgba(226, 196, 200, 0.5), rgba(226, 196, 200, 0) 70%);
   animation: blob-a 40s ease-in-out infinite;
 }
-/* pale champagne — upper-right */
+/* pale pink — upper-right */
 .site-bg .b2 {
   width: 62vmax;
   height: 62vmax;
   right: -14vmax;
   top: -8vmax;
-  background: radial-gradient(circle, rgba(226, 210, 176, 0.46), rgba(226, 210, 176, 0) 70%);
+  background: radial-gradient(circle, rgba(238, 218, 220, 0.46), rgba(238, 218, 220, 0) 70%);
   animation: blob-b 48s ease-in-out infinite;
 }
-/* warm gold — centre (geometry centres it so the keyframe owns transform) */
+/* dusty rose — centre (geometry centres it so the keyframe owns transform) */
 .site-bg .b3 {
   width: 70vmax;
   height: 70vmax;
@@ -705,16 +706,16 @@
   top: 46%;
   margin-left: -35vmax;
   margin-top: -35vmax;
-  background: radial-gradient(circle, rgba(216, 194, 148, 0.42), rgba(216, 194, 148, 0) 68%);
+  background: radial-gradient(circle, rgba(216, 178, 186, 0.42), rgba(216, 178, 186, 0) 68%);
   animation: blob-c 44s ease-in-out infinite;
 }
-/* cream — lower-right */
+/* ivory — lower-right */
 .site-bg .b4 {
   width: 64vmax;
   height: 64vmax;
   right: -12vmax;
   bottom: -18vmax;
-  background: radial-gradient(circle, rgba(240, 226, 200, 0.48), rgba(240, 226, 200, 0) 70%);
+  background: radial-gradient(circle, rgba(244, 236, 228, 0.48), rgba(244, 236, 228, 0) 70%);
   animation: blob-d 52s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {

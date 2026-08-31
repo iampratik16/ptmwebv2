@@ -138,13 +138,13 @@ export default function Home() {
       </section>
 
       {/* Approach teaser, Hyperspeed highway background */}
-      <section className="section pb-[clamp(1.5rem,3vh,3rem)] relative isolate overflow-hidden bg-(--color-ink) text-(--color-paper-on-dark)">
+      <section className="section pb-[clamp(1.5rem,3vh,3rem)] relative isolate overflow-hidden bg-(--color-oxblood) text-(--color-paper-on-dark)">
         <HyperspeedBg />
         {/* Scrim: darkest under the statement (right), lets the streaks breathe
             on the left, so the copy stays legible over the moving lights. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-l from-(--color-ink)/85 via-(--color-ink)/45 to-(--color-ink)/60"
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-l from-(--color-oxblood)/85 via-(--color-oxblood)/45 to-(--color-oxblood)/60"
         />
         <div className="container-page relative z-10 grid gap-y-10 md:grid-cols-12">
           <Reveal

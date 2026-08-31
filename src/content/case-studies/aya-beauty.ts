@@ -7,7 +7,7 @@ export default buildStudy({
   order: 2,
   disciplines: ["Design & Branding", "Websites & Digital", "Social Media"],
   heroSrc: "/media/work/aya/hero.jpg",
-  heroAlt: "Aya Beauty, a frosted glass vessel and champagne cap catching soft light.",
+  heroAlt: "Aya Beauty, a frosted glass vessel and brushed metal cap catching soft light.",
   heroVideo: true,
   oneLineOutcome: "A modern beauty brand, from identity to storefront to feed.",
   theClient:

@@ -14,7 +14,7 @@ const Hyperspeed = dynamic(() => import("@/components/media/Hyperspeed"), {
 // Module-level constant → stable reference, so the effect isn't torn down and
 // rebuilt on every re-render. Only overrides the fog/background colour so distant
 // streaks fade into the section's ink instead of pure black.
-const OPTS = { colors: { background: 0x14110f } };
+const OPTS = { colors: { background: 0x3d1620 } }; // must match the oxblood section ground
 
 /**
  * Background layer for the dark "Our approach" section: the Hyperspeed highway.

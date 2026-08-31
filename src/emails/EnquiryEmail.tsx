@@ -11,10 +11,10 @@ import {
 } from "@react-email/components";
 import type { ContactInput } from "@/lib/contact-schema";
 
-const PAPER = "#F5F2EC";
-const INK = "#14110F";
+const PAPER = "#F7F4EE";
+const INK = "#1A1012";
 const SOFT = "#6B645C";
-const ACCENT = "#7F5F2A";
+const ACCENT = "#7A2E3A";
 
 export default function EnquiryEmail({ name, email, telephone, company, enquiry }: ContactInput) {
   return (

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Bespoke cursor: a small champagne disc that lerps toward the pointer, expands
+ * Bespoke cursor: a small rose-gold disc that lerps toward the pointer, expands
  * over interactive elements, and morphs into a labelled pill ("View") over
  * elements carrying `data-cursor-label` (Hello Monday-style). Fine-pointer only;
  * disabled under reduced motion. Native cursor remains as a fallback.
