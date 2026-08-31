@@ -36,7 +36,7 @@ A complete, production-ready Next.js 15 site for Pink Tree Media. Premium, minim
 ## Assumptions made (planning §13 defaults)
 
 1. **Clients:** Chigwell Marquees scaffolded as the lead study with **draft** copy and **qualitative** (non-fabricated) outcomes; the other four are clearly-marked placeholders.
-2. **Palette / type:** rosewood `#A86B72` + Fraunces/Inter as documented (added `--color-accent-ink #8E4F57` for AA-compliant small accent text).
+2. **Palette / type:** champagne `#A8823F` (large display / hairlines), `--color-accent-ink #7F5F2A` for AA-compliant small accent text, `--color-accent-on-dark #BFA06A` for ink sections. Display face is Fraunces (opsz-driven); Archivo carries labels and numerals. Asserted by `scripts/check-contrast.mjs`.
 3. **Video:** self-hosted loops; `<Video>` is Mux-ready for longer clips.
 4. **CMS:** static typed content (Zod-validated).
 5. **Custom cursor:** ON (tasteful, desktop-only, reduced-motion off).
