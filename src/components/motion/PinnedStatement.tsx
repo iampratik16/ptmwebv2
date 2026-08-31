@@ -26,6 +26,10 @@ export default function PinnedStatement({
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Pinning an element taller than the viewport clips it — and below lg the
+    // mosaic stacks, so this block gets tall. Desktop only; smaller screens get
+    // the same content as ordinary flow, which reads fine.
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
     let revert = () => {};
     let cancelled = false;

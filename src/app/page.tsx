@@ -4,6 +4,7 @@ import Sectors from "@/components/sections/Sectors";
 import Reveal from "@/components/motion/Reveal";
 import SplitHeading from "@/components/motion/SplitHeading";
 import PinnedStatement from "@/components/motion/PinnedStatement";
+import ShowcaseMosaic from "@/components/sections/ShowcaseMosaic";
 import WorkCard from "@/components/work/WorkCard";
 import HoverVideo from "@/components/media/HoverVideo";
 import HyperspeedBg from "@/components/media/HyperspeedBg";
@@ -34,7 +35,10 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Manifesto — pins and resolves word by word against scroll progress.
+      {/* Manifesto — pins and resolves word by word against scroll progress,
+          with the showcase mosaic as its cargo. The pin holds for ~810px; with
+          only the 119px statement in it that was dead scroll, so the mosaic
+          resolves beneath the statement while it is held.
           SplitHeading is deliberately not used here: PinnedStatement runs its
           own SplitText, and two splits on one node fight over the DOM. */}
       <PinnedStatement className="section container-page">
@@ -50,6 +54,8 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+        <ShowcaseMosaic className="mt-8 lg:mt-10 lg:h-[54vh]" />
       </PinnedStatement>
 
       <Sectors />
