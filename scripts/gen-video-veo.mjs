@@ -16,7 +16,8 @@ const LOCATION = process.env.LOCATION ?? "us-central1";
 const OUT = process.argv[2] ?? join(ROOT, "public", "media", "hero", "home-veo.mp4");
 const ASPECT = process.env.ASPECT ?? "16:9";
 
-const MODELS = ["veo-3.0-fast-generate-001", "veo-2.0-generate-001"];
+// Override with MODELS=veo-3.0-generate-001 for full-quality generations.
+const MODELS = (process.env.MODELS ?? "veo-3.0-fast-generate-001,veo-2.0-generate-001").split(",");
 // Required, not defaulted. A silent fallback here bills a full generation and
 // returns footage nobody asked for — which is exactly what happened when a
 // caller was run against the older copy of this script that ignored argv.
