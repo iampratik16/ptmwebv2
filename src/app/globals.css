@@ -2,7 +2,7 @@
 
 /* =============================================================================
    PINK TREE MEDIA — Design System ("Atelier")
-   Warm near-monochrome palette · one restrained rosewood accent · editorial
+   Warm near-monochrome palette · one restrained champagne accent · editorial
    type · enormous whitespace · slow, weighty, inertia-based motion.
    ========================================================================== */
 
@@ -12,9 +12,10 @@
   --color-ink: #14110f; /* warm near-black — primary text / dark sections */
   --color-ink-soft: #6b645c; /* secondary text, captions, labels */
   --color-hairline: #e2dcd2; /* borders, dividers, 1px rules */
-  --color-accent: #a86b72; /* rosewood — hover/borders/large display */
-  --color-accent-ink: #8e4f57; /* deeper rosewood — small accent TEXT on paper (AA 5.5:1) */
-  --color-accent-soft: #d8c2c5; /* tints, subtle fills */
+  --color-accent: #a8823f; /* champagne — hairlines, hover, LARGE display (3.17:1 on paper) */
+  --color-accent-ink: #7f5f2a; /* deep champagne — small accent TEXT on paper (5.26:1, AA) */
+  --color-accent-on-dark: #bfa06a; /* light champagne — accent on ink sections (7.57:1) */
+  --color-accent-soft: #e6d9bd; /* champagne tint — fills, subtle washes */
   --color-paper-on-dark: #efeae1; /* text on ink sections */
   --color-hairline-dark: #2a2521; /* hairlines on dark sections */
 

@@ -8,9 +8,9 @@ const Ballpit = dynamic(() => import("@/components/media/Ballpit"), {
   ssr: false,
 }) as ComponentType<Record<string, unknown>>;
 
-// Pearlescent white → blush → rosewood, on-brand for Pink Tree. First entry also
+// Pearlescent white → warm sand → champagne, on-brand for Pink Tree. First entry also
 // tints the point light, so it stays light.
-const COLORS = [0xf7f1ef, 0xe8cbd1, 0xcf97a2];
+const COLORS = [0xf7f3ec, 0xe6d9bd, 0xbfa06a];
 
 /**
  * Full-bleed ballpit behind the whole footer. gravity: 0 so bubbles fill the space

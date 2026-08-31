@@ -14,7 +14,7 @@ import type { ContactInput } from "@/lib/contact-schema";
 const PAPER = "#F5F2EC";
 const INK = "#14110F";
 const SOFT = "#6B645C";
-const ACCENT = "#A86B72";
+const ACCENT = "#7F5F2A";
 
 export default function EnquiryEmail({ name, email, telephone, company, enquiry }: ContactInput) {
   return (

@@ -15,7 +15,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(135deg, #14110f 0%, #2a1f20 100%)",
+          background: "linear-gradient(135deg, #14110f 0%, #2a2418 100%)",
           padding: "72px",
           fontFamily: "Georgia, serif",
         }}
@@ -25,7 +25,7 @@ export default function OgImage() {
             fontSize: 22,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#A86B72",
+            color: "#BFA06A",
             fontFamily: "Helvetica, Arial, sans-serif",
           }}
         >
@@ -40,7 +40,7 @@ export default function OgImage() {
               marginTop: 36,
               width: 120,
               height: 2,
-              background: "#A86B72",
+              background: "#A8823F",
               display: "flex",
             }}
           />
