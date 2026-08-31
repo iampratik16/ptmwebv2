@@ -12,9 +12,22 @@ const Hyperspeed = dynamic(() => import("@/components/media/Hyperspeed"), {
 }) as ComponentType<{ effectOptions?: Record<string, unknown> }>;
 
 // Module-level constant → stable reference, so the effect isn't torn down and
-// rebuilt on every re-render. Only overrides the fog/background colour so distant
-// streaks fade into the section's ink instead of pure black.
-const OPTS = { colors: { background: 0x3d1620 } }; // must match the oxblood section ground
+// rebuilt on every re-render. The library ships magenta/purple and cyan streaks;
+// every colour is re-pointed at the rose-gold / oxblood ramp so the highway sits
+// inside the section instead of fighting it. `background` must match the section
+// ground exactly or the canvas reads as a rectangle over it.
+const OPTS = {
+  colors: {
+    roadColor: 0x2a0f16,
+    islandColor: 0x33131b,
+    background: 0x3d1620, // = --color-oxblood
+    shoulderLines: 0xf2eae8, // = --color-paper-on-dark
+    brokenLines: 0xf2eae8,
+    leftCars: [0xb76e79, 0xe0aeb4, 0xefdcdf], // rose gold → soft pink
+    rightCars: [0x7a2e3a, 0x9d5460, 0x5c1f2b], // maroon → oxblood
+    sticks: 0xe0aeb4, // light rose
+  },
+};
 
 /**
  * Background layer for the dark "Our approach" section: the Hyperspeed highway.
