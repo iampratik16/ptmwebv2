@@ -28,6 +28,7 @@ const checks = [
   ["accent-on-dark on ink (small text)", tok("accent-on-dark"), ink, 4.5],
   ["accent-on-dark on oxblood (small text)", tok("accent-on-dark"), tok("oxblood"), 4.5],
   ["paper-on-dark on oxblood (body)", tok("paper-on-dark"), tok("oxblood"), 4.5],
+  ["gold icon ring on white card (non-text)", tok("gold"), "#ffffff", 3.0],
   ["ink on paper (body)", ink, paper, 4.5],
 ];
 

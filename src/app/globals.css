@@ -13,6 +13,7 @@
   --color-ink-soft: #6d6060; /* secondary text, captions, labels */
   --color-hairline: #e5dcd8; /* borders, dividers, 1px rules */
   --color-oxblood: #3d1620; /* deep dark red — signature dark section ground */
+  --color-gold: #a8842a; /* service-card icon rings on white (3.50:1, clears non-text 3:1) */
   --color-accent: #b76e79; /* ROSE GOLD — hairlines, hover, LARGE display (3.47:1 on ivory) */
   --color-accent-ink: #7a2e3a; /* maroon — small accent TEXT on ivory (8.39:1, AA) */
   --color-accent-on-dark: #e0aeb4; /* light rose — accent on ink/oxblood (9.66:1) */
@@ -954,5 +955,83 @@
   }
   .rail {
     scroll-snap-type: none;
+  }
+}
+
+
+/* =============================================================================
+   Service cards — white ground, gold icon ring, oxblood on hover. The whole
+   card is the hover target so the icon, title and body move together.
+   ========================================================================== */
+.service-card {
+  display: block;
+  height: 100%;
+  padding: clamp(1.5rem, 2.2vw, 2.25rem);
+  background: #fff;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color 0.5s var(--ease-out-expo),
+    border-color 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease-out-expo),
+    transform 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo);
+}
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  transition:
+    border-color 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease-out-expo);
+}
+.service-body {
+  color: var(--color-ink-soft);
+  transition: color 0.5s var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .service-card:hover {
+    background: var(--color-oxblood);
+    border-color: var(--color-oxblood);
+    color: var(--color-paper-on-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -20px rgba(61, 22, 32, 0.45);
+  }
+  .service-card:hover .service-icon {
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+  }
+  .service-card:hover .service-body {
+    color: color-mix(in srgb, var(--color-paper-on-dark) 82%, transparent);
+  }
+}
+
+/* Keyboard users get the same treatment as hover. */
+.service-card:focus-visible {
+  background: var(--color-oxblood);
+  border-color: var(--color-oxblood);
+  color: var(--color-paper-on-dark);
+}
+.service-card:focus-visible .service-icon {
+  border-color: var(--color-accent-on-dark);
+  color: var(--color-accent-on-dark);
+}
+.service-card:focus-visible .service-body {
+  color: color-mix(in srgb, var(--color-paper-on-dark) 82%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-icon,
+  .service-body {
+    transition: none;
+  }
+  .service-card:hover {
+    transform: none;
   }
 }
