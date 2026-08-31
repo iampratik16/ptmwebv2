@@ -90,7 +90,7 @@ export default function WorkCard({
         </Reveal>
       )}
 
-      <div className="mt-6 flex items-start justify-between gap-6">
+      <div className="mt-4 flex items-start justify-between gap-5">
         <div>
           {index !== undefined && (
             <span className="eyebrow text-(--color-ink-soft)">
@@ -103,7 +103,7 @@ export default function WorkCard({
           <p className="mt-1.5 max-w-[42ch] text-(--color-ink-soft)">
             {study.oneLineOutcome}
           </p>
-          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1">
+          <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
             {study.disciplines.map((d) => (
               <li key={d} className="text-xs uppercase tracking-[0.1em] text-(--color-ink-soft)">
                 {d}

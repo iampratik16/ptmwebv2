@@ -1,7 +1,9 @@
 /**
- * Generates an ambient hero video via Vertex AI Veo (image-to-video from the
- * hero still so it matches the poster). Saves raw mp4 to scratch path given as
- * arg. Auth via env VERTEX_TOKEN + PROJECT.
+ * Generates a hero video via Vertex AI Veo. Text-to-video by default; set
+ * INIT_IMAGE=<path> for image-to-video (e.g. from the hero still, so the clip
+ * matches its poster). Auth via env VERTEX_TOKEN + PROJECT.
+ *
+ *   node scripts/gen-video-veo.mjs <out.mp4> "<prompt>"
  */
 import { readFile, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
@@ -12,10 +14,17 @@ const TOKEN = process.env.VERTEX_TOKEN;
 const PROJECT = process.env.PROJECT;
 const LOCATION = process.env.LOCATION ?? "us-central1";
 const OUT = process.argv[2] ?? join(ROOT, "public", "media", "hero", "home-veo.mp4");
+const ASPECT = process.env.ASPECT ?? "16:9";
 
 const MODELS = ["veo-3.0-fast-generate-001", "veo-2.0-generate-001"];
-const PROMPT =
-  "Rosewood and ink pigment slowly billowing and unfurling through water, elegant swirling blooms of dusty pink, cinematic slow motion, luxurious and moody, smooth continuous flow";
+// Required, not defaulted. A silent fallback here bills a full generation and
+// returns footage nobody asked for — which is exactly what happened when a
+// caller was run against the older copy of this script that ignored argv.
+const PROMPT = process.argv[3];
+if (!PROMPT) {
+  console.error("no prompt: pass it as argv[3]. Refusing to bill a generation for a default.");
+  process.exit(1);
+}
 
 const base = (m) =>
   `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${PROJECT}/locations/${LOCATION}/publishers/google/models/${m}`;
@@ -23,9 +32,21 @@ const base = (m) =>
 async function tryModel(model, imgB64) {
   const body = {
     instances: [
-      { prompt: PROMPT, image: { bytesBase64Encoded: imgB64, mimeType: "image/jpeg" } },
+      imgB64
+        ? { prompt: PROMPT, image: { bytesBase64Encoded: imgB64, mimeType: "image/jpeg" } }
+        : { prompt: PROMPT },
     ],
-    parameters: { aspectRatio: "16:9", sampleCount: 1, generateAudio: false },
+    parameters: {
+      aspectRatio: ASPECT,
+      sampleCount: 1,
+      generateAudio: false,
+      // Veo 3 renders 1080p natively; Veo 2 rejects the field, and the caller
+      // already falls back to it on a 4xx.
+      ...(model.startsWith("veo-3") ? { resolution: "1080p" } : {}),
+      // Shared reject-list (env NEGATIVE) — one string for every shot in a pack,
+      // so six separate generations fail the same way or not at all.
+      ...(process.env.NEGATIVE ? { negativePrompt: process.env.NEGATIVE } : {}),
+    },
   };
   const submit = await fetch(`${base(model)}:predictLongRunning`, {
     method: "POST",
@@ -82,7 +103,10 @@ async function tryModel(model, imgB64) {
 }
 
 async function main() {
-  const imgB64 = (await readFile(join(ROOT, "public", "media", "hero", "home.jpg"))).toString("base64");
+  const initImage = process.env.INIT_IMAGE;
+  const imgB64 = initImage
+    ? (await readFile(initImage)).toString("base64")
+    : null;
   for (const model of MODELS) {
     const out = await tryModel(model, imgB64);
     if (out) {
