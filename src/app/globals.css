@@ -907,3 +907,47 @@
     opacity: 0.6;
   }
 }
+
+/* =============================================================================
+   Horizontal sector rail. Native overflow + scroll-snap — this is what the
+   reference sites load Swiper for, and the platform does it with no JS, no
+   dependency and no main-thread cost.
+   ========================================================================== */
+.rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(15rem, 26vw);
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail-item {
+  scroll-snap-align: start;
+}
+
+/* =============================================================================
+   Sticky-stacked work cards. position: sticky does the entire effect. Note the
+   parent must NOT clip overflow or sticky silently stops working — body uses
+   overflow-x: clip, which is fine, but a section wrapper with overflow-hidden
+   is not.
+   ========================================================================== */
+.sticky-stack > .sticky-stack-item {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-stack > .sticky-stack-item {
+    position: static;
+  }
+  .rail {
+    scroll-snap-type: none;
+  }
+}
