@@ -8,7 +8,7 @@ export default buildStudy({
   order: 3,
   disciplines: ["Design & Branding", "Social Media"],
   heroSrc: "/media/work/swifty/hero.jpg",
-  heroAlt: "Swifty Beats, a live festival stage lit in gold and purple.",
+  heroAlt: "Swifty Beats, warm light beams sweeping through haze across a darkened stage.",
   heroVideo: true,
   liveUrl: "https://swiftybeats.vercel.app",
   oneLineOutcome: "A bold identity and social rhythm for a rising music brand.",

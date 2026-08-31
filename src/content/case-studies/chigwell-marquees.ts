@@ -22,7 +22,7 @@ const chigwellMarquees: CaseStudy = {
   heroMedia: loop(
     "/media/work/chigwell/hero",
     "/media/work/chigwell/hero.jpg",
-    "The Chigwell Marquees, bold crimson brand artwork.",
+    "The Chigwell Marquees, a candlelit marquee interior dressed for an event.",
     2560,
     1600,
   ),

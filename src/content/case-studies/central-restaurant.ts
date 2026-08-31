@@ -7,7 +7,7 @@ export default buildStudy({
   order: 4,
   disciplines: ["Design & Branding", "Print & Merchandise", "Social Media"],
   heroSrc: "/media/work/central/hero.jpg",
-  heroAlt: "Central Restaurant & Lounge, bold amber brand artwork.",
+  heroAlt: "Central Restaurant & Lounge, a warm-lit bar at night, brushed brass and dark timber.",
   heroVideo: true,
   oneLineOutcome: "A warm, confident identity for a modern restaurant and lounge.",
   theClient:
