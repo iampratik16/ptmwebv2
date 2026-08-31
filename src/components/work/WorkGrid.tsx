@@ -80,7 +80,7 @@ export default function WorkGrid({ studies }: { studies: CaseStudy[] }) {
     <div className="relative">
       {/* Filter — the same pills as the header. overflow-x-auto lets the row
           scroll on narrow screens; the scrollbar is hidden for a clean edge. */}
-      <div className="sticky top-[var(--header-h)] z-20 mb-16 flex justify-start overflow-x-auto py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="sticky top-[var(--header-h)] z-20 mb-10 flex justify-start overflow-x-auto py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <GooeyNav
           items={filters.map((f) => ({ label: f.key, href: "#" }))}
           onSelect={(index) => setFilter(filters[index].key)}
@@ -90,13 +90,13 @@ export default function WorkGrid({ studies }: { studies: CaseStudy[] }) {
 
       <div
         ref={gridRef}
-        className="grid grid-cols-1 gap-x-[clamp(1.5rem,5vw,5.5rem)] md:grid-cols-2"
+        className="grid grid-cols-1 gap-x-[clamp(1.25rem,3vw,2.5rem)] md:grid-cols-2"
       >
         {columns.map((col, c) => (
           <div
             key={c}
-            className={`flex flex-col gap-[clamp(4rem,10vh,9rem)] ${
-              c === 1 ? "md:mt-[16vh]" : ""
+            className={`flex flex-col gap-[clamp(2.5rem,5vh,4rem)] ${
+              c === 1 ? "md:mt-[8vh]" : ""
             }`}
           >
             {col.map((study, i) => {
@@ -113,7 +113,7 @@ export default function WorkGrid({ studies }: { studies: CaseStudy[] }) {
                     noBend
                     hoverPlay
                     priority={isLcp}
-                    ratio={i % 2 === 0 ? "4 / 5" : "5 / 6"}
+                    ratio={i % 2 === 0 ? "4 / 3" : "5 / 4"}
                     sizes="(min-width: 768px) 46vw, 100vw"
                   />
                 </div>

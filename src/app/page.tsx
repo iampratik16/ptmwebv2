@@ -27,7 +27,6 @@ const CAP_MEDIA = [
 
 export default function Home() {
   const studies = getAllCaseStudies();
-  const [feature, ...rest] = studies;
 
   return (
     <>
@@ -103,7 +102,7 @@ export default function Home() {
             <Reveal as="p" className="eyebrow">
               Selected work
             </Reveal>
-            <SplitHeading as="h2" className="mt-5 text-h1 font-light tracking-tight">
+            <SplitHeading as="h2" className="mt-3 text-h2 font-light tracking-tight">
               Proof, not promises.
             </SplitHeading>
           </div>
@@ -115,13 +114,15 @@ export default function Home() {
           </TransitionLink>
         </div>
 
-        <div className="mt-16">
-          <WorkCard study={feature} index={1} feature noBend />
-        </div>
-
-        <div className="mt-16 grid gap-x-10 gap-y-20 md:mt-24 md:grid-cols-2">
-          {rest.map((study, i) => (
-            <WorkCard key={study.slug} study={study} index={i + 2} />
+        <div className="mt-8 grid gap-x-5 gap-y-9 md:grid-cols-2 lg:grid-cols-3">
+          {studies.map((study, i) => (
+            <WorkCard
+              key={study.slug}
+              study={study}
+              index={i + 1}
+              ratio="4 / 3"
+              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 44vw, 100vw"
+            />
           ))}
         </div>
       </section>
