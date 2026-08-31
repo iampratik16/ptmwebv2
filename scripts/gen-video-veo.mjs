@@ -61,7 +61,10 @@ async function tryModel(model, imgB64) {
   const { name } = await submit.json();
   console.log(`  ${model}: op submitted, polling…`);
 
-  for (let i = 0; i < 40; i++) {
+  // Full veo-3.0-generate-001 routinely runs longer than the fast tier;
+  // 40 polls (400s) was cutting real generations off. POLLS overrides.
+  const MAX_POLLS = Number(process.env.POLLS ?? 90);
+  for (let i = 0; i < MAX_POLLS; i++) {
     await new Promise((r) => setTimeout(r, 10000));
     const poll = await fetch(`${base(model)}:fetchPredictOperation`, {
       method: "POST",
@@ -99,7 +102,7 @@ async function tryModel(model, imgB64) {
     }
     console.log(`  …polling (${(i + 1) * 10}s)`);
   }
-  console.log(`  ${model}: timed out`);
+  console.log(`  ${model}: timed out after ${MAX_POLLS * 10}s`);
   return null;
 }
 

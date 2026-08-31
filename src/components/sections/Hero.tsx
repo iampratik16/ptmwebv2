@@ -7,7 +7,7 @@ import { loop } from "@/lib/media";
 const homeHero = loop(
   "/media/hero/home",
   "/media/hero/home.jpg",
-  "A grand estate and its gardens at dusk, an ambient brand film.",
+  "A country manor, classic car, stables and estate at dusk, an ambient brand film.",
   1920,
   1080,
 );
