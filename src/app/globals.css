@@ -616,9 +616,9 @@
 }
 
 /* =============================================================================
-   Ambient site-wide background — "aurora-soft-harmony". Warm-bone base (#f6f3ee)
-   with a faint static pastel mesh painted on .site-bg (lavender UL, periwinkle
-   UR, rose centre, peach LR) so corners never read flat, plus 4 large blurred
+   Ambient site-wide background — "aurora-warm-metal". Warm-bone base (#f6f3ee)
+   with a faint static mesh painted on .site-bg (bronze UL, pale champagne UR,
+   warm gold centre, cream LR) so corners never read flat, plus 4 large blurred
    radial blobs drifting on transform-only keyframes → GPU-composited. Alphas are
    low so dark ink text stays fully readable. Fixed full-viewport layer behind all
    content; frozen under reduced motion. See SiteBackground.tsx.
@@ -668,10 +668,10 @@
   pointer-events: none;
   background-color: #f6f3ee;
   background-image:
-    radial-gradient(120% 90% at 12% 8%, rgba(196, 182, 224, 0.3), rgba(196, 182, 224, 0) 55%),
-    radial-gradient(120% 90% at 88% 6%, rgba(178, 196, 232, 0.28), rgba(178, 196, 232, 0) 55%),
-    radial-gradient(130% 100% at 52% 46%, rgba(232, 196, 205, 0.24), rgba(232, 196, 205, 0) 60%),
-    radial-gradient(120% 100% at 92% 92%, rgba(244, 214, 190, 0.3), rgba(244, 214, 190, 0) 58%);
+    radial-gradient(120% 90% at 12% 8%, rgba(206, 186, 152, 0.3), rgba(206, 186, 152, 0) 55%),
+    radial-gradient(120% 90% at 88% 6%, rgba(226, 210, 176, 0.28), rgba(226, 210, 176, 0) 55%),
+    radial-gradient(130% 100% at 52% 46%, rgba(216, 194, 148, 0.24), rgba(216, 194, 148, 0) 60%),
+    radial-gradient(120% 100% at 92% 92%, rgba(240, 226, 200, 0.3), rgba(240, 226, 200, 0) 58%);
 }
 .site-bg > span {
   position: absolute;
@@ -679,25 +679,25 @@
   will-change: transform;
   filter: blur(50px);
 }
-/* lavender / violet — upper-left */
+/* soft bronze — upper-left */
 .site-bg .b1 {
   width: 68vmax;
   height: 68vmax;
   left: -16vmax;
   top: -14vmax;
-  background: radial-gradient(circle, rgba(197, 182, 224, 0.5), rgba(197, 182, 224, 0) 70%);
+  background: radial-gradient(circle, rgba(206, 186, 152, 0.5), rgba(206, 186, 152, 0) 70%);
   animation: blob-a 40s ease-in-out infinite;
 }
-/* periwinkle / sky-blue — upper-right */
+/* pale champagne — upper-right */
 .site-bg .b2 {
   width: 62vmax;
   height: 62vmax;
   right: -14vmax;
   top: -8vmax;
-  background: radial-gradient(circle, rgba(180, 197, 232, 0.46), rgba(180, 197, 232, 0) 70%);
+  background: radial-gradient(circle, rgba(226, 210, 176, 0.46), rgba(226, 210, 176, 0) 70%);
   animation: blob-b 48s ease-in-out infinite;
 }
-/* warm rose / pink — centre (geometry centres it so the keyframe owns transform) */
+/* warm gold — centre (geometry centres it so the keyframe owns transform) */
 .site-bg .b3 {
   width: 70vmax;
   height: 70vmax;
@@ -705,16 +705,16 @@
   top: 46%;
   margin-left: -35vmax;
   margin-top: -35vmax;
-  background: radial-gradient(circle, rgba(232, 190, 198, 0.42), rgba(232, 190, 198, 0) 68%);
+  background: radial-gradient(circle, rgba(216, 194, 148, 0.42), rgba(216, 194, 148, 0) 68%);
   animation: blob-c 44s ease-in-out infinite;
 }
-/* peach / cream — lower-right */
+/* cream — lower-right */
 .site-bg .b4 {
   width: 64vmax;
   height: 64vmax;
   right: -12vmax;
   bottom: -18vmax;
-  background: radial-gradient(circle, rgba(244, 214, 190, 0.48), rgba(244, 214, 190, 0) 70%);
+  background: radial-gradient(circle, rgba(240, 226, 200, 0.48), rgba(240, 226, 200, 0) 70%);
   animation: blob-d 52s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
