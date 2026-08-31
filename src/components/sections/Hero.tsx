@@ -16,11 +16,11 @@ const homeHero = loop(
  * Centred hero in the reference layout: eyebrow, large uppercase statement,
  * supporting line, outlined CTA — over a full-bleed ambient loop.
  *
- * Uses the plain <Video>, NOT BendVideo. BendVideo puts the clip on a WebGL
- * fluid surface (cursor bulge, concentric ripples, UV refraction and a
- * specular crest highlight) — that shader was the "water glowing" look, not
- * the footage. Dropping it also removes a WebGL context, a per-frame video
- * upload to the GPU and a full-viewport shader from the hero.
+ * Uses the plain <Video>. The hero previously ran through a WebGL fluid
+ * surface (cursor bulge, concentric ripples, UV refraction and a specular
+ * crest highlight) — that shader was the "water glowing" look, not the
+ * footage. It is gone, along with its WebGL context, its per-frame video
+ * upload to the GPU and its full-viewport shader.
  */
 export default function Hero() {
   return (
