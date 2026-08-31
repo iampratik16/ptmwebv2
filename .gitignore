@@ -44,3 +44,5 @@ next-env.d.ts
 _docs/
 public/media/_preview/
 .playwright-mcp/
+
+.next-build/

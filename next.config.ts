@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // ponytail: lets `next build` write somewhere other than the running dev
+  // server's .next/. Sharing one dist dir corrupts the dev client manifest
+  // ("__webpack_modules__[moduleId] is not a function"). Verify with
+  // `NEXT_DIST_DIR=.next-build npm run build` while dev stays up.
+  distDir: process.env.NEXT_DIST_DIR ?? ".next",
+
   images: {
     // AVIF only (client decision — no WebP). Next serves AVIF to any browser
     // that accepts it (all current Chrome / Firefox / Edge / Safari 16+); any

@@ -20,10 +20,13 @@
   --color-hairline-dark: #2a2521; /* hairlines on dark sections */
 
   /* ---- Type -------------------------------------------------------------- */
-  /* Display: wide grotesque (Monument Extended look). Body: clean grotesque
-     (PP Mori look). Serif: editorial accent (Editorial New look). */
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  /* Display: high-contrast editorial serif — the DM Serif / Playfair register
+     the reference sites use, done with a variable face whose opsz axis grows
+     stroke contrast as size grows. Label: wide grotesque (eyebrows, numerals).
+     Body: clean grotesque. */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 
   /* Fluid type scale */
@@ -106,9 +109,9 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-stretch: 112%; /* mild expansion → architectural "Monument" feel */
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-variation-settings: "opsz" 72; /* Fraunces optical size → display contrast */
+    letter-spacing: -0.015em;
     text-wrap: balance;
     margin: 0;
   }
@@ -162,7 +165,7 @@
   }
 
   .eyebrow {
-    font-family: var(--font-sans);
+    font-family: var(--font-label);
     font-size: var(--text-eyebrow);
     font-weight: 500;
     text-transform: uppercase;
@@ -175,9 +178,9 @@
     font-family: var(--font-display);
     font-size: var(--text-display);
     line-height: var(--text-display--line-height);
-    font-weight: 700;
-    font-stretch: 125%; /* fully expanded for the big statement headlines */
-    letter-spacing: -0.03em;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144; /* max optical size = thinnest hairlines */
+    letter-spacing: -0.02em;
   }
 
   /* Editorial accent serif — pull-quotes & long statements (Editorial New look). */
@@ -217,7 +220,7 @@
   }
   /* Big outline index that the card top overlaps; fills with accent on hover. */
   .cap-card-num {
-    font-family: var(--font-display);
+    font-family: var(--font-label);
     font-weight: 700;
     font-stretch: 125%;
     line-height: 0.8;
@@ -602,20 +605,13 @@
 }
 
 /* =============================================================================
-   Small-screen type: dial back the EXPANDED display face so big headlines fit
-   comfortably on phones (no crowding / horizontal overflow). Non-layered so it
-   wins over the @layer rules above.
+   Small-screen type: ease the tracking on phones. The old rule here dialled back
+   a width axis; the display face is now a serif with no wdth axis, and the
+   clamp() scale already handles size, so only letter-spacing remains.
    ========================================================================== */
 @media (max-width: 480px) {
   .display {
-    font-stretch: 108%;
-    letter-spacing: -0.02em;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-stretch: 100%;
+    letter-spacing: -0.01em;
   }
 }
 
