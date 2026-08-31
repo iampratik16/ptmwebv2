@@ -1035,3 +1035,128 @@
     transform: none;
   }
 }
+
+/* =============================================================================
+   Full-bleed work panels (relevance.digital register): tall image columns with
+   a centred name, hairline rules and vertical discipline text.
+   ========================================================================== */
+.rail--flush {
+  /* The rail normally insets by the page gutter; these panels run edge to edge. */
+  padding-inline: 0;
+  scroll-padding-inline: 0;
+  grid-auto-columns: clamp(15rem, 26vw, 24rem);
+  gap: 0;
+}
+
+.work-panel {
+  position: relative;
+  display: block;
+  height: clamp(26rem, 74vh, 46rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* A floor rather than a one-edge gradient: the name is centred, so it can land
+   on any part of the photograph. */
+.work-panel__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink) 42%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink) 28%, transparent) 45%,
+      color-mix(in srgb, var(--color-ink) 62%, transparent) 100%
+    );
+  transition: background 0.6s var(--ease-out-expo);
+}
+
+.work-panel__inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding-inline: 1.5rem;
+  text-align: center;
+  color: var(--color-paper-on-dark);
+}
+
+.work-panel__name {
+  font-family: var(--font-label);
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-wrap: balance;
+}
+
+/* The thin vertical rules either side of VIEW in the reference. */
+.work-panel__rule {
+  width: 1px;
+  height: clamp(1.75rem, 4vh, 3rem);
+  background: color-mix(in srgb, var(--color-accent-on-dark) 70%, transparent);
+  transition: height 0.6s var(--ease-out-expo);
+}
+
+.work-panel__view {
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-accent-on-dark);
+}
+
+.work-panel__sector {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--color-paper-on-dark) 70%, transparent);
+}
+
+.work-panel__vertical {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.5rem;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg); /* reads bottom-to-top, as in the reference */
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: color-mix(in srgb, var(--color-paper-on-dark) 65%, transparent);
+}
+
+@media (hover: hover) {
+  .work-panel:hover .work-panel__scrim {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-oxblood) 45%, transparent) 0%,
+      color-mix(in srgb, var(--color-oxblood) 35%, transparent) 45%,
+      color-mix(in srgb, var(--color-oxblood) 70%, transparent) 100%
+    );
+  }
+  .work-panel:hover .work-panel__rule {
+    height: clamp(2.5rem, 6vh, 4.25rem);
+  }
+}
+
+.work-panel:focus-visible {
+  outline: 2px solid var(--color-accent-on-dark);
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-panel__scrim,
+  .work-panel__rule,
+  .work-panel img {
+    transition: none;
+  }
+  .work-panel:hover img {
+    transform: none;
+  }
+}

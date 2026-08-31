@@ -5,7 +5,7 @@ import Reveal from "@/components/motion/Reveal";
 import SplitHeading from "@/components/motion/SplitHeading";
 import ShowcaseMosaic from "@/components/sections/ShowcaseMosaic";
 import ServicesRail from "@/components/sections/ServicesRail";
-import WorkCardsGrid from "@/components/sections/WorkCardsGrid";
+import WorkPanels from "@/components/sections/WorkPanels";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -42,7 +42,7 @@ export default function Home() {
 
       <ServicesRail />
 
-      <WorkCardsGrid />
+      <WorkPanels />
 
       {/* Blank band before the footer */}
       <div aria-hidden className="h-[clamp(4rem,8vh,7rem)] bg-(--color-paper)" />
