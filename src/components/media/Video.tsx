@@ -51,23 +51,23 @@ export default function Video({
     });
   }, []);
 
-  // Decide whether to ever play video. Poster only under reduced motion,
-  // Save-Data, an explicit slow-connection hint, or when a Mux source hasn't
-  // been wired up yet.
+  // Decide whether to ever play video. Two signals only, and both are things
+  // the person actually asked for: reduced motion and Save-Data. Plus Mux,
+  // which simply has no <video> to mount yet.
   //
-  // Phones are NOT poster-only any more. The loop is the hero on every device;
-  // what made it expensive was loading it against first paint, not its weight.
-  // The poster still wins the LCP because an eager clip waits for idle (below),
-  // and genuinely constrained sessions still fall out here on Save-Data or a
-  // 2G/3G hint.
+  // What is NOT consulted any more: navigator.connection.effectiveType. It read
+  // "3g" (rtt 600ms, downlink 1.3Mbps) on localhost over loopback on a gigabit
+  // machine — it is a rolling estimate that Chrome downgrades whenever recent
+  // requests were slow, including requests this very page made. Any visitor it
+  // guessed wrong about lost the hero permanently, because posterOnly is
+  // latched once on mount and never re-read. That was the "hero video is stuck"
+  // bug: not a codec, not autoplay policy, not viewport width — a heuristic
+  // that fires on fast connections and never lets go.
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const nav = navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string };
-    };
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
     const saveData = nav.connection?.saveData === true;
-    const slow = /^(slow-2g|2g|3g)$/.test(nav.connection?.effectiveType ?? "");
-    if (reduced || saveData || slow || media.provider === "mux") {
+    if (reduced || saveData || media.provider === "mux") {
       setPosterOnly(true);
       return;
     }
