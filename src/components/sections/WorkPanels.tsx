@@ -51,15 +51,21 @@ export default function WorkPanels() {
         {studies.map((study, i) => (
           <Reveal media key={study.slug} as="li" delay={i * 80} className="rail-item">
             <TransitionLink href={`/work/${study.slug}`} className="work-panel group">
+              {/* alt is empty on purpose: the image is inside the link, so its
+                  alt folds into the link's accessible name, and the link already
+                  renders client / "View" / sector as real text.
+                  sizes mirrors the clamp(15rem, 26vw, 24rem) track — a bare 26vw
+                  keeps growing past the 24rem ceiling and over-fetches on wide
+                  screens; 1477px is where 26vw reaches 384px. */}
               <Img
                 media={img(
                   `/media/work-panels/${PANEL_ART[study.slug] ?? study.slug}.jpg`,
-                  `${study.client} — ${study.sector}.`,
+                  "",
                   1000,
                   1500,
                 )}
                 fill
-                sizes="(min-width: 1024px) 26vw, 72vw"
+                sizes="(min-width: 1477px) 384px, (min-width: 1024px) 26vw, 72vw"
                 className="transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
               />
 

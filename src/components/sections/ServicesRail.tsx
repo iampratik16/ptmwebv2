@@ -60,7 +60,10 @@ export default function ServicesRail() {
     // stays correct across the clamp() breakpoints.
     const card = el.querySelector("li");
     const step = card ? card.getBoundingClientRect().width + 16 : el.clientWidth * 0.8;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
+    // An explicit behavior:"smooth" overrides the computed scroll-behavior, so
+    // the reduced-motion rule in globals.css does NOT suppress it. Decide here.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollBy({ left: dir * step, behavior: reduced ? "auto" : "smooth" });
   };
 
   return (

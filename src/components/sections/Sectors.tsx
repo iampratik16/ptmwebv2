@@ -23,7 +23,9 @@ export default function Sectors() {
   return (
     <section className="section border-y border-(--color-hairline)">
       <div className="container-page">
-        <Reveal as="p" className="eyebrow">
+        {/* h2, not p: the rail items are h3, and without an h2 here the page
+            jumped h1 -> h3. Visually identical via .eyebrow. */}
+        <Reveal as="h2" className="eyebrow">
           Sectors
         </Reveal>
       </div>
