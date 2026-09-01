@@ -37,18 +37,36 @@ export default function Video({
   const blur = getBlur(media.poster);
 
   // Decide whether to ever play video. Poster only under reduced motion,
-  // Save-Data, on small/mobile viewports (saves bandwidth + keeps LCP fast),
-  // or when a Mux source hasn't been wired up yet.
+  // Save-Data, on phones, or when a Mux source hasn't been wired up yet.
+  //
+  // Phones are poster-only on purpose: the hero loop is ~3.7MB, and shipping it
+  // over throttled 4G took Speed Index to 7.4s and LCP to 3.4s on a Lighthouse
+  // mobile run. The poster is ~230KB and the composition reads identically.
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
     const saveData = nav.connection?.saveData === true;
-    // Plays on phones too now; only poster under reduced-motion / Data-Saver / Mux.
-    if (reduced || saveData || media.provider === "mux") {
+    const phone = window.matchMedia("(max-width: 767px)").matches;
+    // Respect an explicit slow-connection hint too, on any viewport.
+    const slow = /^(slow-2g|2g|3g)$/.test(
+      (nav as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType ?? "",
+    );
+    if (reduced || saveData || phone || slow || media.provider === "mux") {
       setPosterOnly(true);
       return;
     }
-    if (eager) setShouldLoad(true);
+    // `eager` marks the poster as the LCP element (priority below) — it must NOT
+    // also start the video download, or the clip races first paint. Defer to
+    // idle so the poster paints first and the loop arrives after.
+    if (!eager) return;
+    const start = () => setShouldLoad(true);
+    const ric = typeof window.requestIdleCallback === "function"
+      ? window.requestIdleCallback(start, { timeout: 2500 })
+      : window.setTimeout(start, 1200);
+    return () => {
+      if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(ric as number);
+      else window.clearTimeout(ric as number);
+    };
   }, [eager, media.provider]);
 
   // Mount/pause based on viewport proximity.

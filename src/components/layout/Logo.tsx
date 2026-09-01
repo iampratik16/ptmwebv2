@@ -14,7 +14,9 @@ type Props = {
  * legible without going monochrome white.
  */
 export default function Logo({ className = "h-14 sm:h-[4.25rem]", onDark = false }: Props) {
-  const base = `w-auto shrink-0 ${className}`;
+  // object-contain so a container narrower than the lockup letterboxes
+  // instead of squashing it (max-width:100% + a fixed height distorts).
+  const base = `w-auto shrink-0 object-contain ${className}`;
 
   if (onDark) {
     return (

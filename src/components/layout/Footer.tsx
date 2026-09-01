@@ -6,7 +6,7 @@ import Logo from "@/components/layout/Logo";
 import FooterBallpit from "@/components/media/FooterBallpit";
 import { ArrowUpRight, Instagram } from "@/components/ui/icons";
 import { CONTACT, NAV, SITE } from "@/lib/site";
-import { getBlur } from "@/lib/media";
+import { getBlur, img } from "@/lib/media";
 
 // ── Footer background: two versions kept side by side ───────────────────────
 //   "image"   → static minimalist pink marketing still-life (Vertex AI). Light
@@ -20,7 +20,9 @@ const FOOTER_VARIANT: "image" | "ballpit" = "image";
 // ?v bumped whenever the image file is regenerated in place — Next's image
 // optimiser caches by URL, so the query is what busts the stale optimised copy.
 const FOOTER_IMAGE = "/media/footer/marketing.jpg";
-const FOOTER_IMAGE_SRC = `${FOOTER_IMAGE}?v=2`;
+// Route through the shared media helper so this busts with every other
+// asset. A hardcoded ?v=2 here meant a replaced file kept serving stale.
+const FOOTER_IMAGE_SRC = img(FOOTER_IMAGE, "", 2400, 1350).src;
 
 export default function Footer() {
   const year = 2026;
@@ -68,36 +70,34 @@ export default function Footer() {
         />
       )}
 
-      <div className="container-page relative z-10 pt-[clamp(5rem,10vh,8rem)] pb-[clamp(3rem,7vh,5rem)]">
+      <div className="container-page relative z-10 pt-[clamp(3rem,6vh,4.5rem)] pb-[clamp(2rem,4vh,3rem)]">
         {/* Closing invitation */}
         <div className="relative -mt-4">
-          {/* Soft dark halo so the cream headline reads over the light bubbles. */}
-          {!isImage && (
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -inset-x-10 -inset-y-8 z-0 bg-[radial-gradient(70%_130%_at_16%_50%,rgba(20,17,15,0.78),rgba(20,17,15,0.2)_58%,transparent_80%)]"
-            />
-          )}
-          <Reveal className="relative z-10 flex min-h-[clamp(140px,22vh,260px)] flex-col justify-center">
+          {/* Soft dark halo so the ivory headline reads over whatever the
+              background is doing. The image has a bright window in frame, so
+              this is measured against its p95: ivory over ~60% ink = 4.95:1. */}
+          <div
+            aria-hidden
+            className={
+              isImage
+                ? "pointer-events-none absolute -inset-x-[40vw] -inset-y-24 z-0 bg-[radial-gradient(42%_120%_at_28%_50%,rgba(26,16,18,0.86),rgba(26,16,18,0.5)_42%,rgba(26,16,18,0.18)_66%,transparent_84%)]"
+                : "pointer-events-none absolute -inset-x-10 -inset-y-8 z-0 bg-[radial-gradient(70%_130%_at_16%_50%,rgba(20,17,15,0.78),rgba(20,17,15,0.2)_58%,transparent_80%)]"
+            }
+          />
+          <Reveal className="relative z-10 flex min-h-[clamp(96px,13vh,150px)] flex-col justify-center">
             <p
-              className={`eyebrow text-(--footer-fg)/85 ${
-                isImage ? "" : "[text-shadow:0_1px_16px_rgba(20,17,15,0.85)]"
-              }`}
+              className="eyebrow tracking-[0.2em] text-(--color-paper-on-dark)/85"
             >
               Start a conversation
             </p>
             <TransitionLink href="/contact" className="group mt-6 inline-flex items-end gap-4">
               <span
-                className={`font-display text-[clamp(3.25rem,9.5vw,7.5rem)] font-normal leading-[0.92] tracking-tight text-(--footer-fg) ${
-                  isImage
-                    ? ""
-                    : "[text-shadow:0_2px_60px_rgba(20,17,15,0.95),0_2px_12px_rgba(20,17,15,0.8)]"
-                }`}
+                className="font-(family-name:--font-label) text-[clamp(2.25rem,6.5vw,5rem)] font-light uppercase leading-[1.02] tracking-[0.02em] text-(--color-paper-on-dark)"
               >
                 Let’s begin
               </span>
               <ArrowUpRight
-                className={`mb-2 size-[clamp(1.9rem,4.5vw,3.25rem)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:-translate-y-2 ${
+                className={`mb-2 size-[clamp(1.4rem,3.2vw,2.25rem)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:-translate-y-2 ${
                   isImage
                     ? "text-(--color-accent-ink)"
                     : "text-(--color-accent-soft) drop-shadow-[0_2px_10px_rgba(20,17,15,0.85)]"
@@ -114,9 +114,9 @@ export default function Footer() {
         />
 
         {/* Detail columns */}
-        <div className="mt-12 grid grid-cols-2 gap-10 md:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-10 gap-y-8 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <Logo onDark={!isImage} className="h-16 sm:h-20" />
+            <Logo onDark={!isImage} className="h-14 sm:h-16" />
             <p className="mt-4 max-w-[28ch] text-sm leading-relaxed text-(--footer-fg)/75">
               A UK luxury creative consultancy. Complete marketing solutions for
               ambitious brands.
