@@ -26,24 +26,44 @@ export default function RevealObserver() {
       return;
     }
 
+    const reveal = (el: HTMLElement) => {
+      const delay = Number(el.dataset.revealDelay ?? 0);
+      if (delay) {
+        window.setTimeout(() => el.classList.add("is-in"), delay);
+      } else {
+        el.classList.add("is-in");
+      }
+    };
+
+    // Items in a horizontal rail enter the viewport SIDEWAYS. Observed one by
+    // one, each fires its 28px rise (or clip-path wipe) mid-swipe, so the rail
+    // lurches upward under your finger — what read as "horizontal scrolling
+    // isn't stable". Group them by rail and let the rail's own arrival trigger
+    // the whole set, stagger intact: by the time you swipe sideways, every card
+    // has already settled.
+    const groups = new Map<Element, HTMLElement[]>();
+    const solo: HTMLElement[] = [];
+    for (const el of targets) {
+      const rail = el.closest(".rail");
+      if (rail) groups.set(rail, [...(groups.get(rail) ?? []), el]);
+      else solo.push(el);
+    }
+
     const io = new IntersectionObserver(
       (entries, observer) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          const el = entry.target as HTMLElement;
-          const delay = Number(el.dataset.revealDelay ?? 0);
-          if (delay) {
-            window.setTimeout(() => el.classList.add("is-in"), delay);
-          } else {
-            el.classList.add("is-in");
-          }
-          observer.unobserve(el);
+          observer.unobserve(entry.target);
+          const group = groups.get(entry.target);
+          if (group) group.forEach(reveal);
+          else reveal(entry.target as HTMLElement);
         }
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
     );
 
-    targets.forEach((el) => io.observe(el));
+    solo.forEach((el) => io.observe(el));
+    groups.forEach((_, rail) => io.observe(rail));
     return () => io.disconnect();
   }, [pathname]);
 

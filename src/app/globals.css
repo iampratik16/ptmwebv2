@@ -911,7 +911,7 @@
 }
 
 /* =============================================================================
-   Horizontal sector rail. Native overflow + scroll-snap — this is what the
+   Horizontal sector rail. Native overflow scrolling — this is what the
    reference sites load Swiper for, and the platform does it with no JS, no
    dependency and no main-thread cost.
    ========================================================================== */
@@ -926,16 +926,20 @@
   gap: clamp(0.75rem, 1.5vw, 1.5rem);
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
+  /* No snap, on any device. Snap has to land the scroll on a snap point after
+     every gesture, so a flick that ends between two cards is dragged BACKWARDS
+     to the previous edge: measured at 293px -> 268px with `mandatory`, and
+     still 298px -> 240px with `proximity`, which is the rail fighting the
+     finger. Without it the rail stops exactly where it was left, identically on
+     phone, tablet and desktop. The arrow buttons still step by one card width
+     plus the gap, so nudged scrolling stays aligned. */
+  scroll-snap-type: none;
   scrollbar-width: none;
   padding-inline: var(--gutter);
   scroll-padding-inline: var(--gutter);
 }
 .rail::-webkit-scrollbar {
   display: none;
-}
-.rail-item {
-  scroll-snap-align: start;
 }
 
 /* =============================================================================
@@ -952,9 +956,6 @@
 @media (prefers-reduced-motion: reduce) {
   .sticky-stack > .sticky-stack-item {
     position: static;
-  }
-  .rail {
-    scroll-snap-type: none;
   }
 }
 
