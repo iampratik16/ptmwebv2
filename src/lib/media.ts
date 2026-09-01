@@ -40,9 +40,14 @@ export function loop(
     width,
     height,
     provider: "self",
+    // H.264 MP4 first, deliberately. The browser takes the first source it
+    // claims to support and does not fall back on a decode failure — and Safari
+    // reports WebM as playable while refusing VP9 4:4:4 (the hero clip), so a
+    // WebM-first list left iPhones and Macs frozen on the poster. MP4 plays on
+    // every device; the WebM stays for the Firefox builds shipped without H.264.
     sources: [
-      { src: v(`${base}.webm`), type: "video/webm" },
       { src: v(`${base}.mp4`), type: "video/mp4" },
+      { src: v(`${base}.webm`), type: "video/webm" },
     ],
   };
 }

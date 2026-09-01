@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import { getBlur } from "@/lib/media";
 import type { VideoMedia } from "@/content/schema";
@@ -36,22 +36,38 @@ export default function Video({
   const [posterOnly, setPosterOnly] = useState(false);
   const blur = getBlur(media.poster);
 
+  // iOS only autoplays a clip that is genuinely muted and inline, and refuses
+  // outright in Low Power Mode. So force `muted` on the element rather than
+  // trusting the prop, and if the policy still says no, retry once on the first
+  // user gesture — otherwise the hero sits frozen on its poster all session.
+  const play = useCallback(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = true;
+    el.play().catch(() => {
+      const retry = () => void el.play().catch(() => {});
+      document.addEventListener("touchstart", retry, { once: true, passive: true });
+      document.addEventListener("click", retry, { once: true });
+    });
+  }, []);
+
   // Decide whether to ever play video. Poster only under reduced motion,
-  // Save-Data, on phones, or when a Mux source hasn't been wired up yet.
+  // Save-Data, an explicit slow-connection hint, or when a Mux source hasn't
+  // been wired up yet.
   //
-  // Phones are poster-only on purpose: the hero loop is ~3.7MB, and shipping it
-  // over throttled 4G took Speed Index to 7.4s and LCP to 3.4s on a Lighthouse
-  // mobile run. The poster is ~230KB and the composition reads identically.
+  // Phones are NOT poster-only any more. The loop is the hero on every device;
+  // what made it expensive was loading it against first paint, not its weight.
+  // The poster still wins the LCP because an eager clip waits for idle (below),
+  // and genuinely constrained sessions still fall out here on Save-Data or a
+  // 2G/3G hint.
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
+    const nav = navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    };
     const saveData = nav.connection?.saveData === true;
-    const phone = window.matchMedia("(max-width: 767px)").matches;
-    // Respect an explicit slow-connection hint too, on any viewport.
-    const slow = /^(slow-2g|2g|3g)$/.test(
-      (nav as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType ?? "",
-    );
-    if (reduced || saveData || phone || slow || media.provider === "mux") {
+    const slow = /^(slow-2g|2g|3g)$/.test(nav.connection?.effectiveType ?? "");
+    if (reduced || saveData || slow || media.provider === "mux") {
       setPosterOnly(true);
       return;
     }
@@ -69,6 +85,12 @@ export default function Video({
     };
   }, [eager, media.provider]);
 
+  // `autoPlay` covers the happy path; this covers the blocked one, and is what
+  // registers the gesture retry above once the element is actually in the DOM.
+  useEffect(() => {
+    if (shouldLoad) play();
+  }, [shouldLoad, play]);
+
   // Mount/pause based on viewport proximity.
   useEffect(() => {
     if (posterOnly) return;
@@ -78,8 +100,10 @@ export default function Video({
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoad(true);
-          videoRef.current?.play().catch(() => {});
+          // Eager media hands the download to the idle callback above so the
+          // poster keeps the LCP — don't let the observer pull it forward.
+          if (!eager) setShouldLoad(true);
+          play();
         } else {
           videoRef.current?.pause();
         }
@@ -88,7 +112,7 @@ export default function Video({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [posterOnly]);
+  }, [posterOnly, eager, play]);
 
   return (
     <div
