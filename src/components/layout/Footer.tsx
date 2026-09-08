@@ -4,7 +4,8 @@ import TransitionLink from "@/components/ui/TransitionLink";
 import Reveal from "@/components/motion/Reveal";
 import Logo from "@/components/layout/Logo";
 import FooterBallpit from "@/components/media/FooterBallpit";
-import { ArrowUpRight, Instagram } from "@/components/ui/icons";
+import Magnetic from "@/components/motion/Magnetic";
+import { ArrowRight, ArrowUpRight, Instagram } from "@/components/ui/icons";
 import { CONTACT, NAV, SITE } from "@/lib/site";
 import { getBlur, img } from "@/lib/media";
 
@@ -90,20 +91,37 @@ export default function Footer() {
             >
               Start a conversation
             </p>
-            <TransitionLink href="/contact" className="group mt-6 inline-flex items-end gap-4">
-              <span
-                className="font-(family-name:--font-label) text-[clamp(2.25rem,6.5vw,5rem)] font-light uppercase leading-[1.02] tracking-[0.02em] text-(--color-paper-on-dark)"
-              >
-                Let’s begin
-              </span>
-              <ArrowUpRight
-                className={`mb-2 size-[clamp(1.4rem,3.2vw,2.25rem)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:-translate-y-2 ${
-                  isImage
-                    ? "text-(--color-accent-ink)"
-                    : "text-(--color-accent-soft) drop-shadow-[0_2px_10px_rgba(20,17,15,0.85)]"
-                }`}
-              />
-            </TransitionLink>
+            {/* The wordmark and the button are the same destination on purpose:
+                the oversized "Let's begin" reads as editorial and is easy to
+                miss as a control, so the pill states it plainly. Paper on ink,
+                inverted from the pill used on light sections — this sits in the
+                dark halo above the footer's light scrim. */}
+            <div className="mt-6 flex flex-wrap items-end justify-between gap-x-10 gap-y-7">
+              <TransitionLink href="/contact" className="group inline-flex items-end gap-4">
+                <span
+                  className="font-(family-name:--font-label) text-[clamp(2.25rem,6.5vw,5rem)] font-light uppercase leading-[1.02] tracking-[0.02em] text-(--color-paper-on-dark)"
+                >
+                  Let’s begin
+                </span>
+                <ArrowUpRight
+                  className={`mb-2 size-[clamp(1.4rem,3.2vw,2.25rem)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:-translate-y-2 ${
+                    isImage
+                      ? "text-(--color-accent-ink)"
+                      : "text-(--color-accent-soft) drop-shadow-[0_2px_10px_rgba(20,17,15,0.85)]"
+                  }`}
+                />
+              </TransitionLink>
+
+              <Magnetic strength={0.5} className="mb-2 shrink-0">
+                <TransitionLink
+                  href="/contact"
+                  className="group inline-flex items-center gap-3 rounded-full bg-(--color-paper) px-7 py-3.5 text-sm font-medium tracking-tight text-(--color-ink) transition-colors duration-500 hover:bg-(--color-accent) hover:text-(--color-paper-on-dark)"
+                >
+                  Contact us
+                  <ArrowRight className="size-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+                </TransitionLink>
+              </Magnetic>
+            </div>
           </Reveal>
         </div>
 

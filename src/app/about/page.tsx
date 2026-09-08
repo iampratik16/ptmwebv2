@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/motion/Reveal";
-import SplitHeading from "@/components/motion/SplitHeading";
 import MaskHeading from "@/components/motion/MaskHeading";
 import Figure from "@/components/media/Figure";
-import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
 import { img } from "@/lib/media";
 
 export const metadata: Metadata = {
@@ -91,23 +88,6 @@ export default function AboutPage() {
           <Figure media={about04} sizes="(min-width: 768px) 31vw, 100vw" rounded />
           <Figure media={about05} sizes="(min-width: 768px) 31vw, 100vw" rounded />
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section border-t border-(--color-hairline) text-center">
-        <SplitHeading
-          as="h2"
-          className="mx-auto max-w-[18ch] text-h1 font-light leading-[1.05] tracking-tight"
-        >
-          Let’s build something worth remembering.
-        </SplitHeading>
-        <Reveal delay={120} className="mt-12 flex justify-center">
-          <Magnetic strength={0.5}>
-            <Button href="/contact" variant="solid" withArrow>
-              Start a conversation
-            </Button>
-          </Magnetic>
-        </Reveal>
       </section>
     </div>
   );
