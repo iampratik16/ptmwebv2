@@ -32,9 +32,12 @@ export default function SmoothScroll() {
         smoothWheel: true,
         // A touch more distance per wheel/trackpad move so it feels fast.
         wheelMultiplier: 1.25,
-        // Smooth on touch too, snappier.
-        syncTouch: true,
-        touchMultiplier: 2,
+        // syncTouch stays OFF. It hands touch scrolling to JS, so every drag is
+        // re-driven frame by frame off the GSAP ticker instead of by the
+        // compositor — and on a phone already decoding the hero loop, that is
+        // what reads as scrolling being "stuck". Native touch scroll runs on the
+        // compositor thread and cannot be starved by main-thread work. Wheel and
+        // trackpad keep the inertia; fingers get the platform behaviour.
         // NOTE: do NOT set `duration`/`easing` here. Lenis treats them as global
         // defaults, not scrollTo-only, and its advance() is
         // `if (duration && easing) {...} else if (lerp) {...}` — so setting them
