@@ -22,11 +22,13 @@ export function useTransitionNavigate(): Navigate {
   return ctx ?? ((href: string) => { window.location.href = href; });
 }
 
-// Kept short on purpose: a route curtain feels premium at ~400–500ms and feels
-// broken (like latency) past ~1s. Must match the CSS transition durations on
+// Measured, not guessed: at 400/460 a single navigation cost ~930ms end to end
+// on the production build while the route change itself took ~40ms of that. The
+// curtain WAS the load time. Halved to ~430ms total, which still reads as a
+// deliberate wipe rather than a cut. Must match the CSS transition durations on
 // .page-curtain[data-phase] in globals.css.
-const COVER_MS = 400;
-const REVEAL_MS = 460;
+const COVER_MS = 190;
+const REVEAL_MS = 240;
 
 /**
  * Cinematic cover/wipe between routes — no white flash. A warm panel sweeps up
@@ -48,6 +50,10 @@ export default function PageTransition({ children }: { children: ReactNode }) {
         router.push(href);
         return;
       }
+      // Warm the route NOW, so the fetch overlaps the cover animation instead of
+      // queueing behind it. Without this the push below starts from cold at
+      // COVER_MS, and the curtain hides a network round trip it could have spent.
+      router.prefetch(href);
       targetRef.current = href;
       setPhase("cover");
     },

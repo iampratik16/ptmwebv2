@@ -44,6 +44,10 @@ export default function TransitionLink({ href, onClick, ...props }: Props) {
       prefetch={false}
       onClick={handleClick}
       onMouseEnter={() => isInternal && router.prefetch(href)}
+      // Touch has no hover, so phones got NO prefetch at all and paid the full
+      // fetch on every tap. pointerdown fires before click on both input types
+      // and buys back the press-to-release time.
+      onPointerDown={() => isInternal && router.prefetch(href)}
       {...props}
     />
   );
