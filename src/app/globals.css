@@ -981,6 +981,14 @@
 
 /* A floor rather than a one-edge gradient: the name is centred, so it can land
    on any part of the photograph. */
+/* Services run square while Selected work stays tall: same panel, different
+   frame. Height comes off the track width via aspect-ratio rather than a second
+   clamp(), so the box stays square at every breakpoint on its own. */
+.work-panel--square {
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
 .work-panel__scrim {
   position: absolute;
   inset: 0;
