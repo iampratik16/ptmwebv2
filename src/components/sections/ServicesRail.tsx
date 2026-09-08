@@ -94,7 +94,7 @@ export default function ServicesRail() {
       <ul ref={railRef} className="rail rail--flush mt-10" aria-label="Services">
         {CAPABILITIES.map((cap, i) => (
           <Reveal media key={cap} as="li" delay={i * 80} className="rail-item">
-            <TransitionLink href="/work" className="work-panel work-panel--square group">
+            <TransitionLink href="/services" className="work-panel work-panel--square group">
               {/* alt is empty on purpose: the image is inside the link, so its
                   alt folds into the link's accessible name, and the link already
                   renders the service name / "View" / tag as real text.

@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/site";
+import { NAV, SITE } from "@/lib/site";
 import { getAllSlugs } from "@/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
-  const staticRoutes = ["", "/work", "/about", "/contact"].map((path) => ({
+  // Derived from NAV rather than hand-listed: the previous literal list silently
+  // went stale the moment a page was added to the nav and not to this array.
+  const staticRoutes = ["", ...NAV.map((item) => item.href)].map((path) => ({
     url: `${base}${path}`,
     changeFrequency: "monthly" as const,
     priority: path === "" ? 1 : 0.8,

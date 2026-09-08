@@ -796,7 +796,12 @@
 .gooey-nav-container {
   position: relative;
   border-radius: 100vw;
-  background: color-mix(in srgb, var(--color-ink) 94%, transparent);
+  /* 78%, not 94%: the island should sit ON the hero rather than block it out.
+     Kept well above ~60% because the labels are paper-on-dark and the bar is
+     fixed over arbitrary photography — and there is deliberately no
+     backdrop-filter here (a fixed bar re-blurs its backdrop every scroll frame
+     in Safari, which is a top cause of janky scrolling). */
+  background: color-mix(in srgb, var(--color-ink) 78%, transparent);
   overflow: hidden;
   /* Never shrink below the pills' width: in a narrow flex parent the island
      would otherwise compress and overflow:hidden would clip the last pills

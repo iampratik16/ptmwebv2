@@ -43,6 +43,7 @@ export const CONTACT = {
 export const NAV: ReadonlyArray<{ label: string; href: string }> = [
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
 ];
 
