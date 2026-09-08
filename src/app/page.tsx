@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
-import Sectors from "@/components/sections/Sectors";
 import Reveal from "@/components/motion/Reveal";
 import SplitHeading from "@/components/motion/SplitHeading";
 import ShowcaseMosaic from "@/components/sections/ShowcaseMosaic";
@@ -37,8 +36,6 @@ export default function Home() {
 
         <ShowcaseMosaic className="mt-10 lg:mt-14" />
       </section>
-
-      <Sectors />
 
       <ServicesRail />
 

@@ -109,7 +109,7 @@ export default function ServicesRail() {
               <span aria-hidden className="work-panel__scrim" />
 
               {/* Numeral up the left edge, where the work panels set their
-                  disciplines — it echoes the 01-04 in Sectors. */}
+                  disciplines. */}
               <span aria-hidden className="work-panel__vertical">
                 {String(i + 1).padStart(2, "0")}
               </span>
