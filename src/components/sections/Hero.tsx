@@ -49,7 +49,16 @@ export default function Hero() {
         <MaskHeading
           as="h1"
           delay={40}
-          className="mt-6 max-w-[15ch] font-(family-name:--font-label) text-[clamp(1.85rem,4.6vw,4.5rem)] font-light uppercase leading-[1.1] tracking-[0.015em] text-(--color-paper-on-dark)"
+          /* max-w 20ch is measured, not picked: it is the tightest value that
+             breaks the line into TWO on both a 1440 desktop and a 390 phone.
+             18ch still gives three lines; anything past 20ch stays at two but
+             just spreads the block wider. text-balance evens the two lines.
+
+             Boska Bold. The optical-size axis that Fraunces carried is gone
+             with it — Boska has no opsz, so pinning it would be inert. Weight is
+             the only axis here, and 700 is where the high-contrast fashion cut
+             reads without the thin strokes disappearing over the video. */
+          className="mt-6 max-w-[20ch] text-balance font-(family-name:--font-hero) text-[clamp(1.85rem,4.6vw,4.5rem)] font-bold uppercase leading-[1.1] tracking-[0.015em] text-(--color-paper-on-dark)"
         >
           Complete marketing for ambitious brands
         </MaskHeading>
@@ -57,7 +66,7 @@ export default function Hero() {
         <Reveal delay={140}>
           <p className="mx-auto mt-7 max-w-[54ch] text-balance text-(--color-paper-on-dark)/80">
             Design and branding, print and merchandise, websites and digital,
-            social media — every part of it handled under one roof.
+            social media. Every part of it handled under one roof.
           </p>
         </Reveal>
 

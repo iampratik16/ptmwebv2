@@ -42,7 +42,7 @@ export default function WorkPanels() {
           Selected work
         </Reveal>
         <Reveal as="p" delay={90} className="mx-auto mt-4 max-w-[52ch] text-(--color-paper-on-dark)/70">
-          Brands we handle end to end — design and branding, print, digital and
+          Brands we handle end to end. Design and branding, print, digital and
           social, under one roof.
         </Reveal>
       </div>

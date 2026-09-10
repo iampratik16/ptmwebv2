@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { archivo, hanken, fraunces } from "@/lib/fonts";
+import { archivo, hanken, fraunces, boska } from "@/lib/fonts";
 import { SITE } from "@/lib/site";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import RevealObserver from "@/components/providers/RevealObserver";
@@ -16,8 +16,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
-    template: `%s — ${SITE.name}`,
+    default: `${SITE.name} · ${SITE.tagline}`,
+    template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
   applicationName: SITE.name,
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: SITE.locale,
     siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.name} · ${SITE.tagline}`,
     description: SITE.description,
     url: SITE.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.name} · ${SITE.tagline}`,
     description: SITE.description,
   },
 };
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${archivo.variable} ${hanken.variable} ${fraunces.variable}`}
+      className={`${archivo.variable} ${hanken.variable} ${fraunces.variable} ${boska.variable}`}
       // The inline script below adds the `js` (and later `gsap-failsafe`)
       // classes before hydration; suppress the expected html-attribute diff so
       // React doesn't discard and re-render the tree.

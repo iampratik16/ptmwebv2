@@ -26,6 +26,29 @@ For each **confirmed** client, supply:
 
 Placeholder copy currently reads `TODO: client to supply …` and the cards show an **"In preparation"** tag — both disappear automatically once the entry is filled and `placeholder` is set to `false` (or removed).
 
+## Services page — capability claims to confirm
+
+The /services page now states, in list form, what a client receives for each of
+the five services, plus a four-step process. **None of this was supplied by Pink
+Tree; it is a considered draft written to industry-standard scope.** It makes
+commitments to prospective clients, so every line needs sign-off or editing
+before launch. Nothing here invents a client, a result or a metric.
+
+Confirm or strike, per service:
+
+- [ ] **Brand & Design** — logo/wordmark/marque, colour + type systems, art direction, brand guidelines, print and social templates.
+- [ ] **Print & Merchandise** — stationery, brochures/menus/lookbooks, packaging, signage and large format, branded merchandise, print management and proofing.
+- [ ] **Social Media Marketing** — content planning, photography and art direction, copywriting, scheduling and publishing, **monthly reporting**.
+- [ ] **Websites** — design and build, copy/photography direction, **CMS setup and training**, performance and accessibility, **launch and aftercare**.
+- [ ] **Digital Marketing** — paid social, **search (paid and organic)**, email campaigns, landing pages, tracking and reporting.
+
+The bolded items are the ones most likely to be wrong: they imply an ongoing
+retainer or a skill set the studio may not offer in-house.
+
+Also confirm the process wording ("Conversation, Direction, Production,
+Handover"), which promises **one point of contact throughout** and that the
+studio **stays reachable after launch**.
+
 ## 2. The Chigwell Marquees draft copy
 
 The lead case study uses polished **draft** copy written for layout/tone. Please review and approve or amend:

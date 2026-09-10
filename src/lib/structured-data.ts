@@ -65,7 +65,7 @@ export function caseStudyLd(study: CaseStudy) {
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: `${study.client} — ${study.oneLineOutcome}`,
+    name: `${study.client}: ${study.oneLineOutcome}`,
     headline: study.seo.title,
     description: study.seo.description,
     url: `${SITE.url}/work/${study.slug}`,
