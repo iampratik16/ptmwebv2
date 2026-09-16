@@ -97,14 +97,20 @@ export default function Footer() {
                 inverted from the pill used on light sections — this sits in the
                 dark halo above the footer's light scrim. */}
             <div className="mt-6 flex flex-wrap items-end justify-between gap-x-10 gap-y-7">
-              <TransitionLink href="/contact" className="group inline-flex items-end gap-4">
+              {/* An INLINE arrow, not inline-flex: with the longer CTA the wordmark
+                  wraps to two lines, and a flex arrow sat at the far right edge of
+                  the whole block, detached from the text. Inline keeps it trailing
+                  the last word. No ch max-width here either — ch resolves against
+                  THIS element's 16px font, not the span's 80px, so 16ch was ~128px
+                  and broke the line into five. */}
+              <TransitionLink href="/contact" className="group inline-block">
                 <span
                   className="font-(family-name:--font-label) text-[clamp(2.25rem,6.5vw,5rem)] font-light uppercase leading-[1.02] tracking-[0.02em] text-(--color-paper-on-dark)"
                 >
-                  Let’s begin
+                  Let’s talk about your business
                 </span>
                 <ArrowUpRight
-                  className={`mb-2 size-[clamp(1.4rem,3.2vw,2.25rem)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:-translate-y-2 ${
+                  className={`ml-3 inline-block size-[clamp(1.4rem,3.2vw,2.25rem)] align-baseline transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:-translate-y-2 ${
                     isImage
                       ? "text-(--color-accent-ink)"
                       : "text-(--color-accent-soft) drop-shadow-[0_2px_10px_rgba(20,17,15,0.85)]"
@@ -136,8 +142,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Logo onDark={!isImage} className="h-14 sm:h-16" />
             <p className="mt-4 max-w-[28ch] text-sm leading-relaxed text-(--footer-fg)/75">
-              A UK luxury creative consultancy. Complete marketing solutions for
-              ambitious brands.
+              Your Business & Marketing Partner.
             </p>
           </div>
 

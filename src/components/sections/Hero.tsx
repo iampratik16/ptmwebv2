@@ -43,30 +43,33 @@ export default function Hero() {
 
       <div className="container-page relative z-10 flex flex-col items-center pt-[var(--header-h)] text-center">
         <Reveal as="p" className="eyebrow text-(--color-paper-on-dark)/75">
-          A UK luxury creative consultancy
+          Your Business & Marketing Partner
         </Reveal>
 
         <MaskHeading
           as="h1"
           delay={40}
-          /* max-w 20ch is measured, not picked: it is the tightest value that
-             breaks the line into TWO on both a 1440 desktop and a 390 phone.
-             18ch still gives three lines; anything past 20ch stays at two but
-             just spreads the block wider. text-balance evens the two lines.
+          /* The break is explicit (the \n in the text), not left to wrapping:
+             the headline is two sentences, and natural wrapping cannot break
+             between them — the second sentence is longer than the first line
+             would have to be, so no max-width produces that break. max-w 30ch is
+             then just a ceiling wide enough for the longer line to sit on one
+             row; it stops deciding the break. No text-balance, for the same
+             reason: it would fight the explicit break.
 
              Boska Bold. The optical-size axis that Fraunces carried is gone
              with it — Boska has no opsz, so pinning it would be inert. Weight is
              the only axis here, and 700 is where the high-contrast fashion cut
              reads without the thin strokes disappearing over the video. */
-          className="mt-6 max-w-[20ch] text-balance font-(family-name:--font-hero) text-[clamp(1.85rem,4.6vw,4.5rem)] font-bold uppercase leading-[1.1] tracking-[0.015em] text-(--color-paper-on-dark)"
+          className="mt-6 max-w-[30ch] font-(family-name:--font-hero) text-[clamp(1.85rem,4.6vw,4.5rem)] font-bold uppercase leading-[1.1] tracking-[0.015em] text-(--color-paper-on-dark)"
         >
-          Complete marketing for ambitious brands
+          {"One partner.\nEvery part of your marketing."}
         </MaskHeading>
 
         <Reveal delay={140}>
           <p className="mx-auto mt-7 max-w-[54ch] text-balance text-(--color-paper-on-dark)/80">
-            Design and branding, print and merchandise, websites and digital,
-            social media. Every part of it handled under one roof.
+            We work alongside businesses as an extension of their team,
+            bringing strategy, creative and execution together under one roof.
           </p>
         </Reveal>
 

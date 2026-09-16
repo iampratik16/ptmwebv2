@@ -10,7 +10,7 @@ import { getAllCaseStudies } from "@/content";
 export const metadata: Metadata = {
   title: "Selected Work",
   description:
-    "Selected Pink Tree Media case studies. A small number of brands, handled completely, shown as the finished work rather than described.",
+    "Selected Pink Tree Media case studies. From individual projects to complete marketing partnerships, covering brand, digital, social, web and print.",
   alternates: { canonical: "/work" },
 };
 
@@ -33,14 +33,11 @@ export default function WorkIndex() {
           >
             Depth over breadth.
           </MaskHeading>
-          {/* Deliberately does NOT list the services. That enumeration lives on
-              /services, and repeating it here made the two pages read as the
-              same page twice. This page is here to be looked at: what the
-              standard is, judged on finished work rather than claims. */}
           <Reveal delay={120}>
             <p className="mt-8 max-w-[52ch] text-h3 font-light leading-relaxed text-(--color-ink-soft)">
-              A small number of brands, handled completely. Judge us on the
-              finished thing.
+              From individual projects to complete marketing partnerships, our
+              work covers brand, digital, social, web, print and everything in
+              between.
             </p>
           </Reveal>
           <Reveal delay={180}>

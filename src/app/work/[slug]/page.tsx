@@ -144,12 +144,16 @@ export default async function CaseStudyPage({
         </div>
       </header>
 
-      {/* The Client / The Challenge */}
+      {/* The Business / The Challenge. The four section headings across this
+          template are The Business, The Challenge, What we did and The result —
+          the same four questions in the same order for every study, so they can
+          be read side by side. NOTE the data field behind "The Business" is
+          still `theClient` in the schema; only the heading was renamed. */}
       <section className="section container-page">
         <div className="grid gap-x-12 gap-y-16 md:grid-cols-2">
           <div>
             <Reveal as="p" className="eyebrow">
-              The Client
+              The Business
             </Reveal>
             <Reveal>
               <p className="mt-6 text-h3 font-light leading-relaxed">{study.theClient}</p>
@@ -166,11 +170,11 @@ export default async function CaseStudyPage({
         </div>
       </section>
 
-      {/* What We Delivered */}
+      {/* What we did */}
       <section className="border-y border-(--color-hairline) bg-(--color-paper)">
         <div className="container-page section">
           <Reveal as="p" className="eyebrow">
-            What we delivered
+            What we did
           </Reveal>
           <dl className="mt-12 divide-y divide-(--color-hairline)">
             {study.delivered.map((d, i) => (
@@ -223,12 +227,12 @@ export default async function CaseStudyPage({
         </section>
       )}
 
-      {/* Results */}
+      {/* The result */}
       {study.results.length > 0 && (
         <section className="section bg-(--color-ink) text-(--color-paper-on-dark)">
           <div className="container-page">
             <Reveal as="p" className="eyebrow text-(--color-paper-on-dark)/70">
-              Results
+              The result
             </Reveal>
             <ul className="mt-14 grid gap-x-12 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
               {study.results.map((r, i) => (

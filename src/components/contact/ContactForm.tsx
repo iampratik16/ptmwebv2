@@ -1,20 +1,29 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { contactSchema, CONTACT_FIELDS, type ContactInput } from "@/lib/contact-schema";
+import {
+  contactSchema,
+  CONTACT_FIELDS,
+  HELP_OPTIONS,
+  type ContactInput,
+} from "@/lib/contact-schema";
 import { ArrowRight } from "@/components/ui/icons";
 
 type Errors = Partial<Record<keyof ContactInput, string>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
-const EMPTY: ContactInput = {
+const EMPTY = {
   name: "",
   email: "",
   telephone: "",
   company: "",
+  // Deliberately unset: a pre-selected option gets submitted unread, which
+  // defeats the purpose of asking. Typed loosely here because "" is not a
+  // member of the enum until the visitor picks one.
+  helpWith: "",
   enquiry: "",
   website: "",
-};
+} as unknown as ContactInput;
 
 export default function ContactForm() {
   const [values, setValues] = useState<ContactInput>(EMPTY);
@@ -112,6 +121,56 @@ export default function ContactForm() {
           />
         ))}
       </div>
+
+      {/* Radio group, not a <select>: five options is short enough to show in
+          full, and a visitor who does not know what they need should be able to
+          SEE that "Not sure" is allowed rather than discovering it in a dropdown. */}
+      <fieldset className="mt-2">
+        <legend className="eyebrow mb-3 text-(--color-ink)">
+          What can we help with?
+          <span aria-hidden className="text-(--color-accent-ink)"> *</span>
+        </legend>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          {HELP_OPTIONS.map((option) => {
+            const checked = values.helpWith === option;
+            return (
+              <label
+                key={option}
+                className={`flex cursor-pointer items-center gap-3 rounded-[var(--radius-sm)] border px-5 py-4 text-sm transition-colors duration-300 ${
+                  checked
+                    ? "border-(--color-ink) bg-(--color-ink) text-(--color-paper-on-dark)"
+                    : "border-(--color-hairline) hover:border-(--color-ink)/40"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="helpWith"
+                  value={option}
+                  checked={checked}
+                  onChange={() => setField("helpWith", option)}
+                  className="sr-only"
+                />
+                <span
+                  aria-hidden
+                  className={`grid size-4 shrink-0 place-items-center rounded-full border ${
+                    checked ? "border-(--color-paper-on-dark)" : "border-(--color-ink)/35"
+                  }`}
+                >
+                  {checked ? (
+                    <span className="size-1.5 rounded-full bg-(--color-paper-on-dark)" />
+                  ) : null}
+                </span>
+                {option}
+              </label>
+            );
+          })}
+        </div>
+        {errors.helpWith && (
+          <p role="alert" className="mt-3 text-sm text-(--color-accent-ink)">
+            {errors.helpWith}
+          </p>
+        )}
+      </fieldset>
 
       <TextArea
         id="field-enquiry"

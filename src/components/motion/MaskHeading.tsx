@@ -22,15 +22,27 @@ export default function MaskHeading({
   className = "",
   delay = 0,
 }: Props) {
-  const words = children.split(" ");
+  // A "\n" in the text forces a line break. Natural wrapping cannot always put
+  // the break where the sentence does: if the second sentence is longer than the
+  // first line would need to be, no max-width exists that breaks between them.
+  const lines = children.split("\n").map((line) => line.trim().split(" "));
+  let index = 0;
   return (
     <Tag className={className} style={{ "--rl-base": `${delay}ms` } as CSSProperties}>
-      {words.map((word, i) => (
-        <Fragment key={i}>
-          <span className="rl-word" style={{ "--i": i } as CSSProperties}>
-            {word}
-          </span>
-          {i < words.length - 1 ? " " : ""}
+      {lines.map((words, lineNo) => (
+        <Fragment key={lineNo}>
+          {lineNo > 0 ? <br /> : null}
+          {words.map((word, i) => {
+            const stagger = index++;
+            return (
+              <Fragment key={i}>
+                <span className="rl-word" style={{ "--i": stagger } as CSSProperties}>
+                  {word}
+                </span>
+                {i < words.length - 1 ? " " : ""}
+              </Fragment>
+            );
+          })}
         </Fragment>
       ))}
     </Tag>

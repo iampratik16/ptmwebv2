@@ -50,7 +50,7 @@ export async function POST(request: Request) {
       from: FROM,
       to: [TO],
       replyTo: data.email,
-      subject: `New enquiry from ${data.name}${data.company ? ` · ${data.company}` : ""}`,
+      subject: `New enquiry from ${data.name} · ${data.helpWith}${data.company ? ` · ${data.company}` : ""}`,
       react: EnquiryEmail(data),
     });
     if (error) {

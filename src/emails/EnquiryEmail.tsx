@@ -16,7 +16,7 @@ const INK = "#1A1012";
 const SOFT = "#6B645C";
 const ACCENT = "#7A2E3A";
 
-export default function EnquiryEmail({ name, email, telephone, company, enquiry }: ContactInput) {
+export default function EnquiryEmail({ name, email, telephone, company, helpWith, enquiry }: ContactInput) {
   return (
     <Html>
       <Head />
@@ -36,6 +36,7 @@ export default function EnquiryEmail({ name, email, telephone, company, enquiry 
             <Field label="Email" value={email} />
             {telephone ? <Field label="Telephone" value={telephone} /> : null}
             {company ? <Field label="Company" value={company} /> : null}
+            <Field label="Enquiry about" value={helpWith} />
           </Section>
 
           <Hr style={{ borderColor: "#E2DCD2", margin: "8px 0 24px" }} />

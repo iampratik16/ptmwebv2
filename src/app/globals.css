@@ -369,12 +369,12 @@
   }
   .page-curtain[data-phase="cover"] {
     transform: translateY(0);
-    transition: transform 0.19s var(--ease-in-out-quint);
+    transition: transform 0.11s var(--ease-in-out-quint);
     pointer-events: auto;
   }
   .page-curtain[data-phase="reveal"] {
     transform: translateY(-100%);
-    transition: transform 0.24s var(--ease-in-out-quint);
+    transition: transform 0.15s var(--ease-in-out-quint);
     pointer-events: auto;
   }
   .page-curtain__mark {
@@ -390,8 +390,8 @@
     opacity: 1;
     transform: translateY(0);
     transition:
-      opacity 0.16s var(--ease-out-expo) 0.02s,
-      transform 0.18s var(--ease-out-expo) 0.02s;
+      opacity 0.1s var(--ease-out-expo),
+      transform 0.11s var(--ease-out-expo);
   }
 }
 

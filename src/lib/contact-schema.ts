@@ -5,6 +5,20 @@ import { z } from "zod";
  * can power inline validation in the browser and authoritative validation in
  * the Route Handler.
  */
+/**
+ * What the enquiry is about. A closed set rather than free text so the values
+ * stay groupable later (in a sheet, a CRM or a report); "Not sure" is a real
+ * option because the Services page explicitly tells people they do not need to
+ * know which service they want before getting in touch.
+ */
+export const HELP_OPTIONS = [
+  "Branding & Design",
+  "Print & Merchandise",
+  "Social Media Marketing",
+  "Websites & Digital Marketing",
+  "Not sure, I’d like some advice",
+] as const;
+
 export const contactSchema = z.object({
   name: z.string().trim().min(2, "Please enter your name.").max(120),
   email: z.string().trim().email("Please enter a valid email address.").max(160),
@@ -16,6 +30,9 @@ export const contactSchema = z.object({
     .or(z.literal(""))
     .optional(),
   company: z.string().trim().max(160).optional(),
+  helpWith: z.enum(HELP_OPTIONS, {
+    message: "Please choose what we can help with.",
+  }),
   enquiry: z
     .string()
     .trim()

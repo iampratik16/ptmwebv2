@@ -22,13 +22,15 @@ export function useTransitionNavigate(): Navigate {
   return ctx ?? ((href: string) => { window.location.href = href; });
 }
 
-// Measured, not guessed: at 400/460 a single navigation cost ~930ms end to end
-// on the production build while the route change itself took ~40ms of that. The
-// curtain WAS the load time. Halved to ~430ms total, which still reads as a
-// deliberate wipe rather than a cut. Must match the CSS transition durations on
+// Measured, not guessed. At 400/460 a navigation cost ~930ms end to end on the
+// production build; at 190/240 it was ~490ms — and in that 490ms the URL already
+// changed at ~236ms, so what remained was still almost entirely this animation
+// rather than any loading. Cut again to 110/150. That is ~330ms total: fast
+// enough to read as a page change rather than a wait, while still covering the
+// swap so there is no white flash. Must match the CSS transition durations on
 // .page-curtain[data-phase] in globals.css.
-const COVER_MS = 190;
-const REVEAL_MS = 240;
+const COVER_MS = 110;
+const REVEAL_MS = 150;
 
 /**
  * Cinematic cover/wipe between routes — no white flash. A warm panel sweeps up
