@@ -47,3 +47,4 @@ public/media/_preview/
 .playwright-mcp/
 
 .next-build/
+.vercel-token
