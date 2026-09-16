@@ -1,14 +1,41 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer, { type Transporter } from "nodemailer";
+import { render } from "@react-email/components";
 import { contactSchema } from "@/lib/contact-schema";
 import EnquiryEmail from "@/emails/EnquiryEmail";
 import { CONTACT } from "@/lib/site";
 
 export const runtime = "nodejs";
+// Office 365 can be slow to hand shake on a cold lambda. The platform default
+// would abort mid-send and lose the enquiry; 30s is comfortably past the worst
+// observed handshake and still well inside Vercel's ceiling.
+export const maxDuration = 30;
 
-const TO = process.env.CONTACT_TO_EMAIL ?? CONTACT.email;
-// Until a domain is verified in Resend, their onboarding sender works for tests.
-const FROM = process.env.CONTACT_FROM_EMAIL ?? "Pink Tree Media <onboarding@resend.dev>";
+// Comma-separated, so one env var fans out to every inbox that should see an
+// enquiry without a redeploy when the list changes.
+const TO = (process.env.CONTACT_TO_EMAIL ?? CONTACT.email)
+  .split(",")
+  .map((a) => a.trim())
+  .filter(Boolean);
+
+// The envelope sender has to be the authenticated mailbox: Exchange rejects a
+// From that the credentials have no Send As right over (550 5.7.60).
+const FROM = process.env.CONTACT_FROM_EMAIL ?? process.env.SMTP_USER ?? CONTACT.email;
+
+// One transporter per warm lambda. Nodemailer keeps the TLS session alive, and
+// the Office 365 handshake — not the send — is the expensive part.
+let transporter: Transporter | null = null;
+function mailer(user: string, pass: string): Transporter {
+  if (!transporter) {
+    transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST ?? "smtp.office365.com",
+      port: Number(process.env.SMTP_PORT ?? 587),
+      secure: false, // 587 upgrades via STARTTLS. `secure: true` is for 465.
+      auth: { user, pass },
+    });
+  }
+  return transporter;
+}
 
 export async function POST(request: Request) {
   let payload: unknown;
@@ -33,33 +60,41 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASSWORD;
 
-  // Graceful local-dev path: no key configured → don't fail the demo.
-  if (!apiKey) {
+  if (!user || !pass) {
+    // In production this is data loss: the visitor is told "thank you" and the
+    // enquiry evaporates. Fail loudly so a misconfigured deploy is obvious on
+    // the first submission rather than discovered weeks later.
+    if (process.env.NODE_ENV === "production") {
+      console.error("[contact] SMTP_USER/SMTP_PASSWORD missing in production — refusing to drop the enquiry silently.");
+      return NextResponse.json({ error: "Could not send your enquiry." }, { status: 500 });
+    }
+    // Local dev without credentials → don't break the form.
     console.warn(
-      "[contact] RESEND_API_KEY not set — enquiry not emailed. Payload:",
+      "[contact] SMTP_USER/SMTP_PASSWORD not set — enquiry not emailed. Payload:",
       { name: data.name, email: data.email },
     );
     return NextResponse.json({ ok: true, delivered: false });
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
+    const html = await render(EnquiryEmail(data));
+    const text = await render(EnquiryEmail(data), { plainText: true });
+
+    await mailer(user, pass).sendMail({
       from: FROM,
-      to: [TO],
+      to: TO,
       replyTo: data.email,
       subject: `New enquiry from ${data.name} · ${data.helpWith}${data.company ? ` · ${data.company}` : ""}`,
-      react: EnquiryEmail(data),
+      html,
+      text,
     });
-    if (error) {
-      console.error("[contact] Resend error:", error);
-      return NextResponse.json({ error: "Could not send your enquiry." }, { status: 502 });
-    }
+
     return NextResponse.json({ ok: true, delivered: true });
   } catch (err) {
-    console.error("[contact] Unexpected error:", err);
-    return NextResponse.json({ error: "Could not send your enquiry." }, { status: 500 });
+    console.error("[contact] SMTP error:", err);
+    return NextResponse.json({ error: "Could not send your enquiry." }, { status: 502 });
   }
 }
