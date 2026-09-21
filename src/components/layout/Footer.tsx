@@ -142,7 +142,13 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Logo onDark={!isImage} className="h-14 sm:h-16" />
             <p className="mt-4 max-w-[28ch] text-sm leading-relaxed text-(--footer-fg)/75">
-              Your Business & Marketing Partner.
+              Your Business &amp; Marketing Partner.
+            </p>
+            {/* Wider than the line above and a step down in contrast: this is
+                the scan-for-keywords line, not the positioning statement. */}
+            <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-(--footer-fg)/60">
+              Strategy, branding, social media, websites, digital marketing,
+              print and merchandise &ndash; all under one roof.
             </p>
           </div>
 
@@ -187,6 +193,8 @@ export default function Footer() {
           <address className="not-italic">
             <p className="eyebrow text-(--footer-fg)/70">Studio</p>
             <p className="mt-3 text-sm leading-relaxed text-(--footer-fg)/85">
+              {CONTACT.address.building}
+              <br />
               {CONTACT.address.street}
               <br />
               {CONTACT.address.locality}

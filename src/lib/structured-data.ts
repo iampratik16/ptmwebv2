@@ -16,7 +16,7 @@ export function organizationLd() {
     sameAs: [CONTACT.social.instagram],
     address: {
       "@type": "PostalAddress",
-      streetAddress: CONTACT.address.street,
+      streetAddress: `${CONTACT.address.building}, ${CONTACT.address.street}`,
       addressLocality: CONTACT.address.locality,
       postalCode: CONTACT.address.postalCode,
       addressRegion: CONTACT.address.region,
@@ -38,7 +38,7 @@ export function localBusinessLd() {
     priceRange: "£££",
     address: {
       "@type": "PostalAddress",
-      streetAddress: CONTACT.address.street,
+      streetAddress: `${CONTACT.address.building}, ${CONTACT.address.street}`,
       addressLocality: CONTACT.address.locality,
       postalCode: CONTACT.address.postalCode,
       addressRegion: CONTACT.address.region,

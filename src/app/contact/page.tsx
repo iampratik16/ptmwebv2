@@ -50,6 +50,8 @@ export default function ContactPage() {
           <Reveal>
             <p className="eyebrow">Studio</p>
             <address className="mt-5 text-lg not-italic leading-relaxed text-(--color-ink-soft)">
+              {CONTACT.address.building}
+              <br />
               {CONTACT.address.street}
               <br />
               {CONTACT.address.locality}, {CONTACT.address.postalCode}

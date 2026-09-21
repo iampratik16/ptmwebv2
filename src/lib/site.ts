@@ -25,9 +25,10 @@ export const CONTACT = {
   whatsappMessage:
     "Hello Pink Tree Media, I'd like to start a conversation about a project.",
   address: {
+    building: "Chigwell Hall",
     street: "High Road",
     locality: "Chigwell",
-    postalCode: "IG7 5BD",
+    postalCode: "IG7 6BD",
     region: "Essex",
     country: "United Kingdom",
   },
