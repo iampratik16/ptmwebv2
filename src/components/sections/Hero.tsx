@@ -7,7 +7,7 @@ import { loop } from "@/lib/media";
 const homeHero = loop(
   "/media/hero/home",
   "/media/hero/home.jpg",
-  "A country manor, classic car, stables and estate at dusk, an ambient brand film.",
+  "Brand collateral on marble, London at dusk and an English estate, an ambient brand film.",
   1920,
   1080,
 );
@@ -27,11 +27,15 @@ export default function Hero() {
     <section className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-(--color-ink)">
       <Video media={homeHero} fill eager sizes="100vw" className="absolute inset-0" />
 
-      {/* Scrim shaped to the actual frame, measured off the poster: the sky band
-          behind the eyebrow reads ~132 luma while the estate and garden bands
-          read ~33-37. So darken BOTH ends and open the middle, rather than the
-          usual bottom-heavy gradient — that would have crushed the detail that
-          makes the shot worth using while leaving the bright sky under-scrimmed. */}
+      {/* Darken BOTH ends and open the middle, rather than the usual
+          bottom-heavy gradient. The montage runs from a warm macro of brand
+          collateral (dark wall up top, bright marble along the bottom) into
+          aerials that invert that — bright sky up top, dark ground below. A
+          gradient weighted to either end alone under-scrims one of them.
+
+          scripts/check-hero-scrim.mjs recomputes this composite against the
+          poster and fails below AA, so changing the footage cannot quietly
+          break the headline the way hand-tuning to a single frame did. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-(--color-ink)/38"
