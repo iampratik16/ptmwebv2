@@ -7,7 +7,7 @@ import { loop } from "@/lib/media";
 const homeHero = loop(
   "/media/hero/home",
   "/media/hero/home.jpg",
-  "Brand collateral on marble, London at dusk and an English estate, an ambient brand film.",
+  "Brand collateral and branded merchandise on marble, London at dusk and an English estate, an ambient brand film.",
   1920,
   1080,
 );
