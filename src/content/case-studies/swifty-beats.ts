@@ -6,7 +6,7 @@ export default buildStudy({
   client: "Swifty Beats",
   sector: "Music & Entertainment",
   order: 3,
-  disciplines: ["Design & Branding", "Social Media"],
+  disciplines: ["Branding & Design", "Social Media Marketing"],
   heroSrc: "/media/work/swifty/hero.jpg",
   heroAlt: "Swifty Beats, warm light beams sweeping through haze across a darkened stage.",
   heroVideo: true,
@@ -17,9 +17,9 @@ export default buildStudy({
   theChallenge:
     "The music spoke for itself, but the brand around it did not yet match its ambition. Swifty Beats needed a bold, unmistakable identity and a social presence with the same rhythm as the sets, one that carries across stages, screens and streaming platforms.",
   delivered: {
-    "Design & Branding":
+    "Branding & Design":
       "A high-energy identity built for motion: a flexible logo, a charged colour palette and a typographic system designed to hold its own against neon, stage light and a small phone screen alike.",
-    "Social Media":
+    "Social Media Marketing":
       "A content system with a consistent visual beat, turning clips, releases and live moments into a recognisable feed that keeps the audience warm between events.",
   },
   work: [

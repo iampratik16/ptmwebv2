@@ -22,7 +22,7 @@ export default function Home() {
       <section className="section container-page">
         <div className="grid gap-y-10 md:grid-cols-12">
           <Reveal as="p" className="eyebrow md:col-span-3">
-            More than an agency. Your marketing partner
+            Built around your business
           </Reveal>
           <div className="md:col-span-8 md:col-start-5">
             <SplitHeading

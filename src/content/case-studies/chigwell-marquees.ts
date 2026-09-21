@@ -14,10 +14,10 @@ const chigwellMarquees: CaseStudy = {
   order: 1,
   placeholder: false,
   disciplines: [
-    "Design & Branding",
+    "Branding & Design",
     "Print & Merchandise",
-    "Websites & Digital",
-    "Social Media",
+    "Websites & Digital Marketing",
+    "Social Media Marketing",
   ],
   heroMedia: loop(
     "/media/work/chigwell/hero",
@@ -33,7 +33,7 @@ const chigwellMarquees: CaseStudy = {
     "The venue’s reputation travelled by word of mouth, but its presence online did not match the experience in person. They needed a brand and digital presence as considered as the events they stage, one that reassures discerning couples before a single conversation.",
   delivered: [
     {
-      area: "Design & Branding",
+      area: "Branding & Design",
       summary:
         "A refined identity system: wordmark, monogram and a warm, tactile palette, built to feel timeless rather than seasonal, and to sit as comfortably on a place setting as on a screen.",
     },
@@ -43,12 +43,12 @@ const chigwellMarquees: CaseStudy = {
         "Brochures, enquiry packs and on-the-day collateral on weighted, uncoated stock, so the first physical touchpoint carries the same quiet luxury as the venue itself.",
     },
     {
-      area: "Websites & Digital",
+      area: "Websites & Digital Marketing",
       summary:
         "A fast, image-led website that lets the spaces speak, generous photography, an effortless enquiry flow and performance tuned for instant loading on mobile.",
     },
     {
-      area: "Social Media",
+      area: "Social Media Marketing",
       summary:
         "An art-directed social presence with a consistent editorial rhythm, turning real events into a considered, ongoing portfolio.",
     },

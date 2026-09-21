@@ -26,20 +26,20 @@ import { CAPABILITIES } from "@/lib/site";
 // something like "print-merchandise" only until a label gains punctuation, and
 // then it 404s quietly. An explicit map fails visibly instead.
 const PANEL_ART: Record<string, string> = {
-  "Design & Branding": "design-branding",
+  "Branding & Design": "design-branding",
   "Print & Merchandise": "print-merchandise",
-  "Websites & Digital": "websites-digital",
-  "Social Media": "social-media",
+  "Websites & Digital Marketing": "websites-digital",
+  "Social Media Marketing": "social-media",
 };
 
 // The blurb each card used to carry, cut to the length the panel can hold. The
 // full sentences live on in the capability pages; a panel has room for a label,
 // not a paragraph.
 const TAG: Record<string, string> = {
-  "Design & Branding": "Identity & art direction",
+  "Branding & Design": "Strategy, identity & design",
   "Print & Merchandise": "Stock, finish & production",
-  "Websites & Digital": "Fast, elegant, mobile-first",
-  "Social Media": "Art-directed feeds",
+  "Websites & Digital Marketing": "Websites, SEO & paid campaigns",
+  "Social Media Marketing": "Strategy, content & reporting",
 };
 
 export default function ServicesRail() {

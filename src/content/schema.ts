@@ -2,10 +2,10 @@ import { z } from "zod";
 
 /** The four capabilities Pink Tree demonstrates through real work. */
 export const DISCIPLINES = [
-  "Design & Branding",
+  "Branding & Design",
   "Print & Merchandise",
-  "Websites & Digital",
-  "Social Media",
+  "Social Media Marketing",
+  "Websites & Digital Marketing",
 ] as const;
 
 export const imageMediaSchema = z.object({

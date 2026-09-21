@@ -73,17 +73,31 @@ export default function Hero() {
         <Reveal delay={140}>
           <p className="mx-auto mt-7 max-w-[54ch] text-balance text-(--color-paper-on-dark)/80">
             We work alongside businesses as an extension of their team,
-            bringing strategy, creative and execution together under one roof.
+            helping bring their ideas and ambitions to life.
           </p>
         </Reveal>
 
+        {/* Two CTAs, filled then outlined, so the primary action is obvious at a
+            glance. Deliberately not <Button>: every one of its variants is
+            built for ink-on-paper and would vanish against the video.
+
+            Stacked full-width on phones — two pills side by side at this
+            tracking wrap mid-word on a 390px screen. */}
         <Reveal delay={220}>
-          <TransitionLink
-            href="/contact"
-            className="mt-10 inline-flex rounded-full border border-(--color-paper-on-dark)/45 px-9 py-4 text-xs uppercase tracking-[0.18em] text-(--color-paper-on-dark) transition-colors duration-500 hover:border-(--color-accent-on-dark) hover:bg-(--color-accent-on-dark) hover:text-(--color-ink)"
-          >
-            Get in touch
-          </TransitionLink>
+          <div className="mt-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+            <TransitionLink
+              href="/contact"
+              className="inline-flex justify-center rounded-full bg-(--color-paper-on-dark) px-9 py-4 text-xs uppercase tracking-[0.18em] text-(--color-ink) transition-colors duration-500 hover:bg-(--color-accent-on-dark)"
+            >
+              Start a Conversation
+            </TransitionLink>
+            <TransitionLink
+              href="/services"
+              className="inline-flex justify-center rounded-full border border-(--color-paper-on-dark)/45 px-9 py-4 text-xs uppercase tracking-[0.18em] text-(--color-paper-on-dark) transition-colors duration-500 hover:border-(--color-accent-on-dark) hover:bg-(--color-accent-on-dark) hover:text-(--color-ink)"
+            >
+              Explore Our Services
+            </TransitionLink>
+          </div>
         </Reveal>
       </div>
     </section>

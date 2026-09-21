@@ -48,10 +48,10 @@ export const NAV: ReadonlyArray<{ label: string; href: string }> = [
 ];
 
 export const CAPABILITIES = [
-  "Design & Branding",
+  "Branding & Design",
   "Print & Merchandise",
-  "Websites & Digital",
-  "Social Media",
+  "Social Media Marketing",
+  "Websites & Digital Marketing",
 ] as const;
 
 export type Capability = (typeof CAPABILITIES)[number];

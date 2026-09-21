@@ -5,7 +5,7 @@ export default buildStudy({
   client: "North Mymms Park",
   sector: "Luxury Events & Hospitality",
   order: 5,
-  disciplines: ["Design & Branding", "Websites & Digital", "Print & Merchandise"],
+  disciplines: ["Branding & Design", "Websites & Digital Marketing", "Print & Merchandise"],
   heroSrc: "/media/work/north-mymms/hero.jpg",
   heroAlt: "North Mymms Park, the period estate facade in low golden light.",
   heroVideo: true,
@@ -15,9 +15,9 @@ export default buildStudy({
   theChallenge:
     "A venue of this stature carries expectations before a guest arrives. North Mymms Park needed a brand and a website that matched the estate in person, restrained, confident and unmistakably premium, and that made enquiring feel as effortless as the events themselves.",
   delivered: {
-    "Design & Branding":
+    "Branding & Design":
       "A restrained, heritage-aware identity: a refined wordmark, an elegant palette and typography that signals permanence rather than trend, built to sit alongside centuries of architecture.",
-    "Websites & Digital":
+    "Websites & Digital Marketing":
       "An image-led website that gives the estate room to breathe, generous photography, a calm enquiry journey and fast, polished performance across devices.",
     "Print & Merchandise":
       "Brochures and enquiry collateral on weighted stock, so the estate’s first physical impression carries the same quiet authority as the grounds.",

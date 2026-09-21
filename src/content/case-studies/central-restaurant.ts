@@ -5,7 +5,7 @@ export default buildStudy({
   client: "Central Restaurant & Lounge",
   sector: "Hospitality",
   order: 4,
-  disciplines: ["Design & Branding", "Print & Merchandise", "Social Media"],
+  disciplines: ["Branding & Design", "Print & Merchandise", "Social Media Marketing"],
   heroSrc: "/media/work/central/hero.jpg",
   heroAlt: "Central Restaurant & Lounge, a warm-lit bar at night, brushed brass and dark timber.",
   heroVideo: true,
@@ -15,11 +15,11 @@ export default buildStudy({
   theChallenge:
     "Central had the food and the crowd, but its brand did not yet capture the warmth of the room. They needed an identity and a set of touchpoints, from the menu in your hand to the post you scroll past, as considered and inviting as an evening at the table.",
   delivered: {
-    "Design & Branding":
+    "Branding & Design":
       "A warm, confident identity built around hospitality: a characterful wordmark, a rich amber-led palette and a tone that reads as generous rather than exclusive.",
     "Print & Merchandise":
       "Menus, covers and table collateral produced on tactile stock, so the first thing a guest picks up already sets the tone for the evening.",
-    "Social Media":
+    "Social Media Marketing":
       "An appetite-led social presence with a consistent look, turning dishes, drinks and full rooms into a steady, crave-worthy feed.",
   },
 });

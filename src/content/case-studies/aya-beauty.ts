@@ -5,7 +5,7 @@ export default buildStudy({
   client: "Aya Beauty",
   sector: "Beauty & Lifestyle",
   order: 2,
-  disciplines: ["Design & Branding", "Websites & Digital", "Social Media"],
+  disciplines: ["Branding & Design", "Websites & Digital Marketing", "Social Media Marketing"],
   heroSrc: "/media/work/aya/hero.jpg",
   heroAlt: "Aya Beauty, a frosted glass vessel and brushed metal cap catching soft light.",
   heroVideo: true,
@@ -15,11 +15,11 @@ export default buildStudy({
   theChallenge:
     "Aya had a strong product and a loyal following, but its look and its online experience were pulling in different directions. The brand needed a single, coherent identity that could carry from the shelf to the storefront to the feed without losing its softness or its edge.",
   delivered: {
-    "Design & Branding":
+    "Branding & Design":
       "A refined identity with an editorial, tactile sensibility, a wordmark, palette and art direction that feel premium without feeling cold, and that flex across packaging, print and digital.",
-    "Websites & Digital":
+    "Websites & Digital Marketing":
       "A fast, elegant storefront designed around the product photography, with a frictionless browse-to-checkout flow and performance tuned for mobile-first shoppers.",
-    "Social Media":
+    "Social Media Marketing":
       "A cohesive, art-directed feed that treats every post as part of one ongoing lookbook, building recognition and trust between launches.",
   },
 });
